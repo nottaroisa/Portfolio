@@ -6,6 +6,8 @@
 
 *"No entiendo la tecnología sin la creatividad."*
 
+### [Ver la web: isabellanottaro.vercel.app](https://isabellanottaro.vercel.app)
+
 [LinkedIn](https://www.linkedin.com/in/isabellanottarosanchez/) · [GitHub](https://github.com/nottaroisa) · [Correo](mailto:isabellafedericanottarosanchez02@liceolapaz.net) · [TikTok](https://www.tiktok.com/@SrtaJeans) · [Blog](https://blogisabellanottaro.blog)
 
 </div>
@@ -103,7 +105,9 @@ npx serve out
 
 ## Desplegar
 
-El proyecto se despliega tal cual en [Vercel](https://vercel.com/new): se importa el repositorio y Vercel detecta Next.js. También funciona en cualquier servidor estático con el contenido de `out/`.
+La web está publicada en Vercel: **[isabellanottaro.vercel.app](https://isabellanottaro.vercel.app)**. Cada `git push` a la rama `main` la actualiza sola.
+
+Para desplegarla en otro sitio: en Vercel se importa el repositorio y detecta Next.js sin configuración; en cualquier otro hosting estático basta con subir el contenido de `out/`.
 
 ## Créditos
 
