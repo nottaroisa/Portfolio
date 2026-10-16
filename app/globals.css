@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* Modo claro: dos tintas sobre papel, como una impresión (cobalto y negro). */
+:root {
+  --papel: #f4f4f0;
+  --papel-hondo: #e8e8e2;
+  --cobalto: #1d2cf3;
+  --cobalto-hondo: #121c9e;
+  --tinta: #141414;
+  --tinta-suave: #4b4b48;
+  --linea: #c9c9c2;
+  color-scheme: light;
+}
+
+/* Modo oscuro: cianotipia, el negativo de la impresión. Fondo azul de
+   Prusia y tinta de papel. Contrastes medidos (WCAG): texto 15,4:1, texto
+   secundario 9,4:1, acento 7,6:1 sobre el fondo y 6,6:1 en los recuadros. */
+:root[data-tema="oscuro"] {
+  --papel: #0d1347;
+  --papel-hondo: #161e5c;
+  --cobalto: #9aa4ff;
+  --cobalto-hondo: #c4caff;
+  --tinta: #f2f1ea;
+  --tinta-suave: #b8bce0;
+  --linea: #2c3680;
+  color-scheme: dark;
+}
+
+/* Sin elección guardada, se sigue la preferencia del sistema. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="claro"]) {
+    --papel: #0d1347;
+    --papel-hondo: #161e5c;
+    --cobalto: #9aa4ff;
+    --cobalto-hondo: #c4caff;
+    --tinta: #f2f1ea;
+    --tinta-suave: #b8bce0;
+    --linea: #2c3680;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-papel: var(--papel);
+  --color-papel-hondo: var(--papel-hondo);
+  --color-cobalto: var(--cobalto);
+  --color-cobalto-hondo: var(--cobalto-hondo);
+  --color-tinta: var(--tinta);
+  --color-tinta-suave: var(--tinta-suave);
+  --color-linea: var(--linea);
+  --font-serif: var(--font-instrument);
+  --font-mono: var(--font-space-mono);
+}
+
+body {
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cobalto);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--cobalto);
+  color: var(--papel);
+}
+
+/* Marcadores de contenido pendiente: visibles a propósito. */
+.pendiente {
+  background: #fff1a8;
+  color: #4d3f00;
+  padding: 0 0.25em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
