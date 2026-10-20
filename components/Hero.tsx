@@ -100,8 +100,9 @@ export function Hero() {
             Estudio 2º de Desarrollo de Aplicaciones Multiplataforma. {perfil.lema}
           </p>
           <p className="bg-papel px-2 py-1 text-tinta-suave">
-            <span className="hidden md:inline">Mueve el ratón: el ASCII te sigue. </span>
-            <span className="md:hidden">Toca y arrastra. </span>
+            {/* Según haya ratón o no, no según el ancho: una tablet también es táctil. */}
+            <span className="hidden [@media(hover:hover)_and_(pointer:fine)]:inline">Mueve el ratón: el ASCII te sigue. </span>
+            <span className="[@media(hover:hover)_and_(pointer:fine)]:hidden">Toca la pantalla: el ASCII responde. </span>
             Baja para ver mi nombre.
           </p>
         </m.div>

@@ -12,3 +12,17 @@ test("en el móvil la portada no se desborda a lo ancho", async ({ page }) => {
   // entonces cabe en la pantalla, sin scroll horizontal.
   expect(desborde).toBe(0);
 });
+
+test.describe("en una tablet táctil", () => {
+  test.use({ viewport: { width: 820, height: 1180 }, hasTouch: true, isMobile: true });
+
+  test("la portada invita a tocar, no a mover el ratón", async ({ page }) => {
+    // Dada la portada en una tablet sin ratón,
+    await page.goto("/");
+    const portada = page.getByRole("region", { name: "Portada" });
+
+    // entonces la pista habla de tocar y no de un ratón que no hay.
+    await expect(portada.getByText(/Toca/)).toBeVisible();
+    await expect(portada.getByText(/Mueve el ratón/)).toBeHidden();
+  });
+});
