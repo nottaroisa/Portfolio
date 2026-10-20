@@ -36,7 +36,7 @@ Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscu
 
 - **Campo ASCII propio** en canvas 2D: convierte una imagen en caracteres según su densidad, solo redibuja las celdas que cambian y se detiene cuando no hay movimiento.
 - **Máscara del nombre** ligada al scroll, con framer-motion.
-- **Proyectos con vista previa** que sigue al cursor, hecha con material real de cada uno: la estructura de ficheros del repositorio, los módulos configurados o sus fotos tramadas a dos tintas.
+- **Proyectos con vista previa** que sigue al cursor, hecha con material real de cada uno: la estructura de ficheros del repositorio o sus fotos tramadas a dos tintas. Son los repositorios fijados en mi perfil de GitHub.
 - **Una página por proyecto** (`/proyectos/<id>`), generada al compilar, con el problema, mi rol, el resultado y el enlace al código.
 - **Modo claro y oscuro** con un botón fijo arriba a la derecha. Entra en modo oscuro y recuerda la elección.
 - **Responsive**: en el móvil el campo responde al tocar y arrastrar, y el nombre se recompone en tres líneas.

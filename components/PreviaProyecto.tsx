@@ -2,7 +2,7 @@ import type { Proyecto } from "@/lib/data";
 import { TramaImagen } from "./TramaImagen";
 
 // Vista previa de un proyecto hecha con su material real: la estructura de
-// ficheros del repositorio, los módulos configurados o sus propias imágenes.
+// ficheros del repositorio o sus propias imágenes.
 export function PreviaProyecto({ proyecto, grande = false }: { proyecto: Proyecto; grande?: boolean }) {
   const v = proyecto.vista;
 
@@ -17,15 +17,11 @@ export function PreviaProyecto({ proyecto, grande = false }: { proyecto: Proyect
   }
 
   // Marco de caracteres de caja: la vista previa también es ASCII.
-  const lineas =
-    v.tipo === "arbol"
-      ? [v.raiz + "/", ...v.nodos.map((n) => `${n.nivel === 0 ? "├─ " : "│  └─ "}${n.ruta}${n.nivel === 0 ? "/" : ""}`)]
-      : v.modulos.map((m) => `[x] ${m}`);
-  const titulo = v.tipo === "arbol" ? "estructura del repositorio" : "apps de Odoo configuradas";
+  const lineas = [v.raiz + "/", ...v.nodos.map((n) => `${n.nivel === 0 ? "├─ " : "│  └─ "}${n.ruta}${n.nivel === 0 ? "/" : ""}`)];
 
   return (
     <figure className="min-w-0 bg-papel-hondo p-4 text-[12px] leading-[1.6] text-cobalto">
-      <figcaption className="mb-2 text-tinta-suave">{titulo}</figcaption>
+      <figcaption className="mb-2 text-tinta-suave">estructura del repositorio</figcaption>
       <pre className={`overflow-hidden whitespace-pre font-mono ${grande ? "" : "max-h-[220px]"}`}>{lineas.join("\n")}</pre>
     </figure>
   );

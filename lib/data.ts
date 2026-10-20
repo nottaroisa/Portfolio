@@ -32,7 +32,7 @@ export type Proyecto = {
   id: string;
   nombre: string;
   tipo: string;
-  plataforma: "escritorio" | "consola" | "web" | "erp";
+  plataforma: "escritorio" | "consola" | "web";
   estado?: string;
   problema: string;
   rol: string;
@@ -46,33 +46,36 @@ export type Proyecto = {
 
 export type VistaPrevia =
   | { tipo: "arbol"; raiz: string; nodos: { ruta: string; nivel: number }[] }
-  | { tipo: "modulos"; modulos: string[] }
   | { tipo: "imagenes"; imagenes: { src: string; alt: string }[] };
 
+// Los repositorios fijados en mi perfil de GitHub, en el mismo orden.
 export const proyectos: Proyecto[] = [
   {
-    id: "erp-aromas-del-norte",
-    nombre: "ERP para Aromas del Norte",
-    tipo: "Implantación de Odoo",
-    plataforma: "erp",
-    estado: "En curso",
+    id: "portfolio",
+    nombre: "Portfolio ASCII",
+    tipo: "Web con Next.js y canvas",
+    plataforma: "web",
     problema:
-      "Una tienda de cosmética artesanal (empresa ficticia, 6 personas) gestiona pedidos en Excel, el stock en un cuaderno y los clientes en la agenda del móvil. Vende productos que ya no tiene y la tienda física y la online no se hablan.",
-    rol: "[PENDIENTE: confirma tu rol, p. ej. análisis de requisitos, configuración e importación de datos]",
-    stack: ["Odoo", "CRM", "Inventario", "Compras", "TPV", "Importación CSV"],
-    resultado: "[PENDIENTE: qué quedó funcionando al terminar]",
-    pendiente: "[PENDIENTE: capturas de Odoo y enlace a la memoria o repositorio]",
+      "Una web propia para presentar mis proyectos, mi experiencia y mi contenido que se recuerde: un campo de caracteres en canvas que sigue al ratón y, al hacer scroll, deja mi nombre recortado.",
+    rol: "[PENDIENTE: cuenta qué decidiste y qué hiciste tú]",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Canvas 2D", "framer-motion", "Playwright"],
+    resultado: "Web estática publicada en Vercel, con modo claro y oscuro y tests de aceptación con Playwright.",
+    repo: "https://github.com/nottaroisa/Portfolio",
+    demo: "https://isabellanottaro.vercel.app",
     vista: {
-      tipo: "modulos",
-      modulos: [
-        "Sitio web",
-        "Comercio electrónico",
-        "CRM",
-        "Inventario",
-        "Compras",
-        "Punto de venta",
-        "Email marketing",
-        "Gastos",
+      tipo: "arbol",
+      raiz: "Portfolio",
+      nodos: [
+        { ruta: "app", nivel: 0 },
+        { ruta: "page.tsx", nivel: 1 },
+        { ruta: "proyectos/[id]/page.tsx", nivel: 1 },
+        { ruta: "components", nivel: 0 },
+        { ruta: "ascii/CampoAscii.tsx", nivel: 1 },
+        { ruta: "Hero.tsx", nivel: 1 },
+        { ruta: "ListaProyectos.tsx", nivel: 1 },
+        { ruta: "TramaImagen.tsx", nivel: 1 },
+        { ruta: "e2e", nivel: 0 },
+        { ruta: "modo-oscuro.spec.ts", nivel: 1 },
       ],
     },
   },
@@ -103,37 +106,6 @@ export const proyectos: Proyecto[] = [
         { ruta: "EstadoRepartidor.java", nivel: 1 },
         { ruta: "main", nivel: 0 },
         { ruta: "Main.java", nivel: 1 },
-      ],
-    },
-  },
-  {
-    id: "rpg-dam1",
-    nombre: "RpgDam1",
-    tipo: "Juego de rol por consola",
-    plataforma: "consola",
-    problema:
-      "Un RPG por turnos en Java que crece práctica a práctica: personajes con herencia (Guerrero, Mago, Arquero), enemigos, inventario, experiencia y curación, guardado en ficheros y excepciones propias.",
-    rol: "[PENDIENTE: el repo es un fork del profesor (ismael-hasan/RpgDam1); explica qué partes implementaste tú]",
-    stack: ["Java", "POO y herencia", "Excepciones", "Ficheros", "Tests"],
-    resultado: "[PENDIENTE: p. ej. número de tests que pasan o mecánicas que terminaste]",
-    repo: "https://github.com/nottaroisa/RpgDam1",
-    vista: {
-      tipo: "arbol",
-      raiz: "RpgDam1/src",
-      nodos: [
-        { ruta: "jugador", nivel: 0 },
-        { ruta: "Personaje.java", nivel: 1 },
-        { ruta: "Guerrero.java", nivel: 1 },
-        { ruta: "Mago.java", nivel: 1 },
-        { ruta: "Arquero.java", nivel: 1 },
-        { ruta: "enemigos", nivel: 0 },
-        { ruta: "Zombie.java · Espectro.java · Demonio.java", nivel: 1 },
-        { ruta: "excepciones", nivel: 0 },
-        { ruta: "PersonajeMuertoException.java", nivel: 1 },
-        { ruta: "principal", nivel: 0 },
-        { ruta: "Juego.java · GestorFicheros.java", nivel: 1 },
-        { ruta: "tests", nivel: 0 },
-        { ruta: "6 clases de test", nivel: 1 },
       ],
     },
   },
