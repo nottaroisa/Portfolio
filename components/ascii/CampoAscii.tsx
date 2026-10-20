@@ -14,6 +14,8 @@ const indice = new Map(GLIFOS.map((g, i) => [g, i]));
 type Props = {
   /** Imagen de origen (tu logo o una foto). Si falta o no carga, se dibuja el monograma. */
   fuente?: string;
+  /** Letras que se dibujan en serif cursiva cuando no hay imagen (por ejemplo, las iniciales). */
+  monograma?: string;
   className?: string;
   /** 0–1: cuánto se rellena el campo de caracteres densos (lo usa la máscara del nombre). */
   relleno?: MotionValue<number>;
@@ -26,14 +28,14 @@ type Celdas = {
   ch: number;
   tam: number; // tamaño de letra en px
   base: Float32Array; // densidad de la imagen, 0–1
-  textura: Float32Array; // densidad de relleno de cada celda, del suelo (0.45 o 0.72) a 1
+  textura: Float32Array; // densidad de relleno de cada celda, de 0.72 a 1
   energia: Float32Array; // perturbación del ratón, 0–1, decae sola
   pintado: Int16Array; // glifo dibujado en cada celda, para no repetir trabajo
 };
 
 // Campo de caracteres que dibuja una imagen en ASCII y reacciona al puntero.
 // Solo redibuja las celdas que cambian y se detiene cuando no hay movimiento.
-export function CampoAscii({ fuente, className, relleno }: Props) {
+export function CampoAscii({ fuente, monograma = "", className, relleno }: Props) {
   const lienzo = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -109,22 +111,25 @@ export function CampoAscii({ fuente, className, relleno }: Props) {
         const w = Math.min(zonaW, (rows * 0.92 * imagen.naturalWidth) / imagen.naturalHeight / aspecto);
         const h = (w * imagen.naturalHeight * aspecto) / imagen.naturalWidth;
         c.drawImage(imagen, zonaX + (zonaW - w) / 2, (rows - h) / 2, w, h);
-      } else {
-        // Monograma provisional "IN" hasta que llegue el logo.
+      } else if (monograma) {
+        // Sin imagen, el monograma (mis iniciales) en serif cursiva.
         c.save();
         c.translate(zonaX + zonaW / 2, rows / 2);
         c.scale(1, aspecto);
         c.fillStyle = "#000";
         c.textAlign = "center";
         c.textBaseline = "middle";
-        // Tamaño que cabe a lo alto y a lo ancho de la zona.
+        // Tamaño que cabe a lo alto y a lo ancho de la zona, medido por la tinta
+        // real de las letras: la cursiva se inclina y ocupa más que su caja.
         const alto = rows / aspecto;
         c.font = `italic 100px ${familiaSerif}`;
-        const anchoA100 = c.measureText("IN").width;
-        // 0.82 deja sitio a la inclinación de la cursiva, que mide más que su caja.
-        const tam = Math.min(alto * 0.95, (zonaW * 0.82 * 100) / anchoA100);
+        const tinta = c.measureText(monograma);
+        const anchoA100 = tinta.actualBoundingBoxLeft + tinta.actualBoundingBoxRight;
+        const tam = Math.min(alto * 0.95, (zonaW * 0.94 * 100) / anchoA100);
         c.font = `italic ${Math.round(tam)}px ${familiaSerif}`;
-        c.fillText("IN", 0, tam * 0.04);
+        // Se centra la tinta, no la caja: la inclinación la desplaza a la derecha.
+        const desvio = ((tinta.actualBoundingBoxLeft - tinta.actualBoundingBoxRight) / 2) * (tam / 100);
+        c.fillText(monograma, desvio, tam * 0.04);
         c.restore();
       }
       const datos = c.getImageData(0, 0, cols, rows).data;
@@ -156,9 +161,9 @@ export function CampoAscii({ fuente, className, relleno }: Props) {
       const cols = Math.ceil(rect.width / cw);
       const rows = Math.ceil(rect.height / ch);
       atlas = crearAtlas(cw, ch, tam);
-      // En el móvil las letras del nombre miden pocas celdas: el relleno es más
-      // denso (solo # % @) para que cada letra se lea como una mancha.
-      const suelo = rect.width < 640 ? 0.72 : 0.45;
+      // El relleno es denso (solo # % @): dentro de las letras del nombre, cada
+      // letra se lee como una mancha de tinta y no como un dibujo de puntos.
+      const suelo = 0.72;
       celdas = {
         cols,
         rows,
@@ -346,7 +351,7 @@ export function CampoAscii({ fuente, className, relleno }: Props) {
       window.removeEventListener("pointermove", alMover);
       window.removeEventListener("pointerdown", alMover);
     };
-  }, [fuente, relleno]);
+  }, [fuente, monograma, relleno]);
 
   return <canvas ref={lienzo} aria-hidden="true" className={className} />;
 }

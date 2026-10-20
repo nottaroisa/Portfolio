@@ -15,14 +15,18 @@ export function Hero() {
   const seccion = useRef<HTMLElement>(null);
   const reducido = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: seccion, offset: ["start start", "end end"] });
-  const cubrir = useTransform(scrollYProgress, [0.08, 0.5], [0, 1]);
-  const escala = useTransform(scrollYProgress, [0.08, 0.7], [1.5, 1]);
+  // Primero el campo se llena de tinta y, justo después, llega el papel con el
+  // nombre recortado: opaco antes de un tercio del recorrido, para que el nombre
+  // se lea pronto y entero. El zoom de entrada es suave y no corta letras.
+  const llenar = useTransform(scrollYProgress, [0.04, 0.22], [0, 1]);
+  const cubrir = useTransform(scrollYProgress, [0.12, 0.32], [0, 1]);
+  const escala = useTransform(scrollYProgress, [0.12, 0.5], [1.15, 1]);
   const pista = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
 
   return (
     <section ref={seccion} className="relative h-[240svh]" aria-label="Portada">
       <div className="sticky top-0 h-svh overflow-hidden">
-        <CampoAscii className="absolute inset-0 h-full w-full" relleno={cubrir} />
+        <CampoAscii className="absolute inset-0 h-full w-full" monograma={perfil.iniciales} relleno={llenar} />
 
         {/* Papel con el nombre recortado: dos composiciones, apaisada y vertical. */}
         <m.svg
@@ -57,7 +61,9 @@ export function Hero() {
           <defs>
             <mask id="nombre-vertical" maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="5000" height="5000">
               <rect x="-2000" y="-2000" width="5000" height="5000" fill="white" />
-              <m.g style={{ scale: reducido ? 1 : escala, originX: "200px", originY: "380px" }}>
+              {/* Sin zoom: las líneas llegan casi al borde y cualquier escala las cortaría
+                  (y el móvil se ahorra repintar la máscara en cada fotograma). */}
+              <g>
                 {/* Letras grandes y un trazo fino que engorda los palos sin cerrar los huecos
                     de la a, la b o la e: con caracteres de 9 px, el nombre se sigue leyendo. */}
                 <text x="8" y="290" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
@@ -69,7 +75,7 @@ export function Hero() {
                 <text x="8" y="550" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
                   Sánchez
                 </text>
-              </m.g>
+              </g>
             </mask>
           </defs>
           <rect x="-2000" y="-2000" width="5000" height="5000" style={{ fill: "var(--papel)" }} mask="url(#nombre-vertical)" />

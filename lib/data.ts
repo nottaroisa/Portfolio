@@ -3,6 +3,8 @@
 
 export const perfil = {
   nombre: "Isabella Nottaro Sánchez",
+  // Isabella Federica Nottaro Sánchez: el monograma que dibuja el campo ASCII de la portada.
+  iniciales: "IFNS",
   lema: "No entiendo la tecnología sin la creatividad.",
   estudia: "2º DAM en CPR Liceo La Paz",
   stack: ["Java", "MySQL", "HTML", "CSS", "Git"],

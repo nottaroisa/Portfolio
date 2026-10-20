@@ -12,7 +12,7 @@
 
 </div>
 
-![Portada del portfolio: un campo de caracteres ASCII en cobalto sobre papel que dibuja el monograma IN](.github/capturas/portada-claro.jpg)
+![Portada del portfolio: un campo de caracteres ASCII en cobalto sobre papel que dibuja el monograma de mis iniciales](.github/capturas/portada-claro.jpg)
 
 ## Sobre mí
 
