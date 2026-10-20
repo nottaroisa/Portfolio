@@ -1,3 +1,4 @@
+import { correoPreparado, gmailPreparado } from "@/lib/correo";
 import { enlaces, perfil } from "@/lib/data";
 import { Cabecera } from "./Cabecera";
 import { CopiarCorreo } from "./CopiarCorreo";
@@ -19,9 +20,28 @@ export function Contacto() {
       <div className="grid gap-12 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] md:items-end">
         <div>
           <CopiarCorreo correo={enlaces.correo} />
-          <a href={enlaces.cv} download className="mt-8 inline-block bg-cobalto px-4 py-2.5 text-[14px] font-bold text-papel transition-transform duration-150 ease-out hover:bg-cobalto-hondo active:scale-[0.97]">
-            <Descifrar texto="Descargar CV (PDF)" />
-          </a>
+          {/* La acción principal: un correo con el asunto y el saludo ya puestos. */}
+          <div className="mt-8 flex flex-wrap items-center gap-3 text-[14px]">
+            <a
+              href={correoPreparado}
+              className="inline-block bg-cobalto px-4 py-2.5 font-bold text-papel transition-transform duration-150 ease-out hover:bg-cobalto-hondo active:scale-[0.97]"
+            >
+              <Descifrar texto="Escríbeme un correo" />
+            </a>
+            <a
+              href={enlaces.cv}
+              download
+              className="inline-block border-2 border-cobalto px-4 py-2 font-bold text-cobalto transition-transform duration-150 ease-out hover:bg-cobalto hover:text-papel active:scale-[0.97]"
+            >
+              <Descifrar texto="Descargar CV (PDF)" />
+            </a>
+          </div>
+          <p className="mt-3 text-[13px] text-tinta-suave">
+            ¿Usas Gmail?{" "}
+            <a href={gmailPreparado} target="_blank" rel="noopener noreferrer" className="inline-block py-1 text-cobalto underline underline-offset-4">
+              Escríbeme desde Gmail<span aria-hidden="true"> ↗</span>
+            </a>
+          </p>
         </div>
 
         <dl className="text-[14px]">

@@ -8,11 +8,11 @@ type Estado = "listo" | "copiado" | "error";
 const avisos: Record<Estado, string> = {
   listo: "clic para copiar",
   copiado: "copiado",
-  error: "no se pudo copiar: ábrelo en tu correo",
+  error: "no se pudo copiar: usa «Escríbeme un correo»",
 };
 
 // El correo en grande: al pulsarlo se copia y el aviso de al lado se descifra
-// en "copiado". Para quien prefiera escribir directamente, queda el enlace mailto.
+// en "copiado". Para escribir directamente está el botón de debajo.
 export function CopiarCorreo({ correo }: { correo: string }) {
   const [estado, setEstado] = useState<Estado>("listo");
   const volver = useRef(0);
@@ -34,16 +34,11 @@ export function CopiarCorreo({ correo }: { correo: string }) {
 
   return (
     <div>
-      <p className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-[13px] text-tinta-suave">
-        <span>
-          correo ·{" "}
-          <span role="status" className={estado === "copiado" ? "text-cobalto" : undefined}>
-            <Descifrar key={estado} texto={avisos[estado]} lanzarAl={estado === "listo" ? undefined : "montar"} />
-          </span>
+      <p className="text-[13px] text-tinta-suave">
+        correo ·{" "}
+        <span role="status" className={estado === "copiado" ? "text-cobalto" : undefined}>
+          <Descifrar key={estado} texto={avisos[estado]} lanzarAl={estado === "listo" ? undefined : "montar"} />
         </span>
-        <a href={`mailto:${correo}`} className="inline-block py-1 hover:text-cobalto">
-          abrir en tu correo<span aria-hidden="true"> ↗</span>
-        </a>
       </p>
       <button
         type="button"

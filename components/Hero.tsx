@@ -2,6 +2,7 @@
 
 import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { correoPreparado } from "@/lib/correo";
 import { enlaces, perfil } from "@/lib/data";
 import { CampoAscii } from "./ascii/CampoAscii";
 import { Descifrar } from "./Descifrar";
@@ -84,7 +85,7 @@ export function Hero() {
             <a href={enlaces.github} target="_blank" rel="noopener noreferrer" className="bg-papel px-2 py-1 hover:text-cobalto">
               <Descifrar texto="GitHub" />
             </a>
-            <a href={`mailto:${enlaces.correo}`} className="bg-papel px-2 py-1 hover:text-cobalto">
+            <a href={correoPreparado} className="bg-papel px-2 py-1 hover:text-cobalto">
               <Descifrar texto="Correo" />
             </a>
             <a href={enlaces.cv} download className="inline-block bg-cobalto px-3 py-1 font-bold text-papel transition-transform duration-150 ease-out hover:bg-cobalto-hondo active:scale-[0.97]">

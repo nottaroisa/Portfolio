@@ -7,8 +7,29 @@ test("todos los enlaces de correo llevan al correo personal", async ({ page }) =
   await page.goto("/");
 
   // entonces hay enlaces a mi correo personal y ninguno a otra dirección.
-  await expect(page.locator(`a[href="mailto:${CORREO}"]`).first()).toBeVisible();
-  await expect(page.locator(`a[href^="mailto:"]:not([href="mailto:${CORREO}"])`)).toHaveCount(0);
+  await expect(page.locator(`a[href^="mailto:${CORREO}"]`).first()).toBeVisible();
+  await expect(page.locator(`a[href^="mailto:"]:not([href^="mailto:${CORREO}"])`)).toHaveCount(0);
+});
+
+test("escribirme abre un correo con asunto y saludo, también desde Gmail", async ({ page }) => {
+  // Dada la sección de contacto,
+  await page.goto("/");
+  const contacto = page.getByRole("region", { name: "Contacto" });
+
+  // cuando alguien quiere escribirme,
+  const escribir = contacto.getByRole("link", { name: "Escríbeme un correo" });
+  const gmail = contacto.getByRole("link", { name: /Gmail/ });
+
+  // entonces el correo llega ya con el asunto y un saludo, solo falta redactarlo.
+  const correo = new URL((await escribir.getAttribute("href"))!);
+  expect(correo.protocol + correo.pathname).toBe(`mailto:${CORREO}`);
+  expect(correo.searchParams.get("subject")).toBe("¡Pongámonos en contacto!");
+  expect(correo.searchParams.get("body")).toMatch(/^Hola, Isabella:/);
+
+  const enGmail = new URL((await gmail.getAttribute("href"))!);
+  expect(enGmail.hostname).toBe("mail.google.com");
+  expect(enGmail.searchParams.get("to")).toBe(CORREO);
+  expect(enGmail.searchParams.get("su")).toBe("¡Pongámonos en contacto!");
 });
 
 test("en contacto se ve que estoy disponible para prácticas", async ({ page }) => {
