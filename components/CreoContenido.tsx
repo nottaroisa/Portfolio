@@ -1,5 +1,6 @@
 import { contenido, enlaces } from "@/lib/data";
 import { Cabecera } from "./Cabecera";
+import { Creditos } from "./Creditos";
 import { Descifrar } from "./Descifrar";
 import { VideoTikTok } from "./VideoTikTok";
 
@@ -38,19 +39,12 @@ export function CreoContenido() {
         ))}
       </ul>
 
-      <p className="mt-14 text-[13px] text-tinta-suave">He trabajado con</p>
-      <ul className="mt-1 flex flex-wrap gap-x-6 gap-y-1 font-serif text-[clamp(1.8rem,4vw,3.4rem)] leading-tight">
-        {contenido.marcas.map((m) => (
-          <li key={m}>{m}</li>
-        ))}
-      </ul>
+      <a href={enlaces.tiktok} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block py-1 text-[14px] text-cobalto underline underline-offset-4">
+        <Descifrar texto="Ver mi TikTok" />
+        <span aria-hidden="true"> ↗</span>
+      </a>
 
-      <div className="mt-10 flex flex-wrap gap-6 text-[14px]">
-        <a href={enlaces.tiktok} target="_blank" rel="noopener noreferrer" className="inline-block py-1 text-cobalto underline underline-offset-4">
-          <Descifrar texto="Ver mi TikTok" />
-          <span aria-hidden="true"> ↗</span>
-        </a>
-      </div>
+      <Creditos />
     </section>
   );
 }

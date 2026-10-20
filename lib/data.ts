@@ -194,6 +194,13 @@ export type Video = {
   soloEnTikTok?: boolean;
 };
 
+export type Marca = {
+  nombre: string;
+  web: string;
+  videos: { id: string; titulo: string }[];
+  pendiente?: string;
+};
+
 // Mi cuenta de TikTok. Las cifras son las públicas del perfil en la fecha indicada.
 export const contenido = {
   usuario: "@srtajeans",
@@ -204,7 +211,46 @@ export const contenido = {
   videosPublicados: "240",
   resumen:
     "Hago vídeos de tecnología: móviles, tablets, periféricos y trucos para el ordenador. Busco el tema, escribo el guion, lo produzco y lo publico yo, de principio a fin.",
-  marcas: ["Xiaomi", "Huawei", "Telefónica", "PcComponentes", "Hyte", "AliExpress", "Temu", "Lewitt"],
+  // Marcas con las que he trabajado: su web y los vídeos en los que salen (de los
+  // que enseña el perfil público; los que faltan, pendientes).
+  marcas: [
+    {
+      nombre: "Xiaomi",
+      web: "https://www.mi.com/es/",
+      videos: [
+        { id: "7610354376309345558", titulo: "Xiaomi 17 Ultra" },
+        { id: "7611105353064779010", titulo: "Xiaomi Pad 8 Pro" },
+      ],
+    },
+    {
+      nombre: "Huawei",
+      web: "https://consumer.huawei.com/es/",
+      videos: [
+        { id: "7561380342838365462", titulo: "Huawei Watch GT 6 frente al GT 5" },
+        { id: "7561130292447137046", titulo: "Huawei Watch GT 6" },
+      ],
+    },
+    { nombre: "Telefónica", web: "https://www.telefonica.com/es/", videos: [], pendiente: "[PENDIENTE: enlace al vídeo]" },
+    { nombre: "PcComponentes", web: "https://www.pccomponentes.com/", videos: [], pendiente: "[PENDIENTE: enlace al vídeo]" },
+    { nombre: "Hyte", web: "https://hyte.com/", videos: [], pendiente: "[PENDIENTE: enlace al vídeo]" },
+    {
+      nombre: "AliExpress",
+      web: "https://es.aliexpress.com/",
+      videos: [
+        { id: "7641316527152680214", titulo: "Tres productos de AliExpress por 0,99 €" },
+        { id: "7441633269252164896", titulo: "Black Friday en AliExpress" },
+      ],
+    },
+    {
+      nombre: "Temu",
+      web: "https://www.temu.com/es",
+      videos: [
+        { id: "7471881647407910166", titulo: "Auriculares IEM de Temu por 4 €" },
+        { id: "7541184125156363542", titulo: "Un ratón de 17 € de Temu" },
+      ],
+    },
+    { nombre: "Lewitt", web: "https://www.lewitt-audio.com/", videos: [], pendiente: "[PENDIENTE: enlace al vídeo]" },
+  ] satisfies Marca[] as Marca[],
   // Los más vistos de los 45 que el perfil público deja ver sin iniciar sesión, y el del PC pecera.
   videos: [
     { id: "7021965904724495621", titulo: "Los interruptores Blue de un teclado mecánico", vistas: "3,5 M", soloEnTikTok: true },
@@ -214,7 +260,7 @@ export const contenido = {
   ] satisfies Video[] as Video[],
 };
 
-export const urlDeVideo = (v: Video) => `https://www.tiktok.com/${contenido.usuario}/video/${v.id}`;
+export const urlDeVideo = (v: { id: string }) => `https://www.tiktok.com/${contenido.usuario}/video/${v.id}`;
 
 // Comunidades en las que participo fuera del aula.
 export const comunidades = [

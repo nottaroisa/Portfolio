@@ -32,6 +32,25 @@ test("los vídeos de TikTok no se cargan hasta que se pulsan", async ({ page }) 
   await expect(seccion.locator('iframe[src^="https://www.tiktok.com/player/v1/7610354376309345558"]')).toBeVisible();
 });
 
+test("cada marca enlaza a su web y a los vídeos en los que sale", async ({ page }) => {
+  // Dada la lista de marcas con las que he trabajado,
+  await page.goto("/");
+  const marcas = page.getByRole("list", { name: "Marcas con las que he trabajado" }).locator(":scope > li");
+  await expect(marcas).toHaveCount(8);
+
+  // entonces cada una lleva a su web y, si la tengo, al vídeo en el que sale.
+  const xiaomi = marcas.filter({ hasText: /^Xiaomi/ });
+  await expect(xiaomi.getByRole("link", { name: /mi\.com/ })).toHaveAttribute("href", "https://www.mi.com/es/");
+  await expect(xiaomi.getByRole("link", { name: /Xiaomi 17 Ultra/ })).toHaveAttribute(
+    "href",
+    "https://www.tiktok.com/@srtajeans/video/7610354376309345558",
+  );
+  await expect(marcas.filter({ hasText: /^Lewitt/ }).getByRole("link", { name: /lewitt-audio\.com/ })).toHaveAttribute(
+    "href",
+    "https://www.lewitt-audio.com/",
+  );
+});
+
 test("el vídeo de los interruptores Blue se abre en TikTok y está el del PC pecera", async ({ page }) => {
   await page.goto("/");
   const seccion = page.getByRole("region", { name: "Creo contenido" });
