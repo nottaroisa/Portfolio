@@ -26,11 +26,9 @@ export const metadata: Metadata = {
     "Portfolio de Isabella Nottaro Sánchez, estudiante de 2º de DAM: proyectos, experiencia, estudios y contacto.",
 };
 
+// La web entra en modo oscuro: la barra del navegador, en azul de cianotipia.
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f4f4f0" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d1347" },
-  ],
+  themeColor: "#0d1347",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

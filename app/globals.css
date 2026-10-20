@@ -1,21 +1,10 @@
 @import "tailwindcss";
 
-/* Modo claro: dos tintas sobre papel, como una impresión (cobalto y negro). */
+/* Modo oscuro, el predeterminado: cianotipia, el negativo de la impresión.
+   Fondo azul de Prusia y tinta de papel. Contrastes medidos (WCAG): texto
+   15,4:1, texto secundario 9,4:1, acento 7,6:1 sobre el fondo y 6,6:1 en los
+   recuadros. Se usa siempre que no se haya elegido el claro con el botón. */
 :root {
-  --papel: #f4f4f0;
-  --papel-hondo: #e8e8e2;
-  --cobalto: #1d2cf3;
-  --cobalto-hondo: #121c9e;
-  --tinta: #141414;
-  --tinta-suave: #4b4b48;
-  --linea: #c9c9c2;
-  color-scheme: light;
-}
-
-/* Modo oscuro: cianotipia, el negativo de la impresión. Fondo azul de
-   Prusia y tinta de papel. Contrastes medidos (WCAG): texto 15,4:1, texto
-   secundario 9,4:1, acento 7,6:1 sobre el fondo y 6,6:1 en los recuadros. */
-:root[data-tema="oscuro"] {
   --papel: #0d1347;
   --papel-hondo: #161e5c;
   --cobalto: #9aa4ff;
@@ -26,18 +15,16 @@
   color-scheme: dark;
 }
 
-/* Sin elección guardada, se sigue la preferencia del sistema. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-tema="claro"]) {
-    --papel: #0d1347;
-    --papel-hondo: #161e5c;
-    --cobalto: #9aa4ff;
-    --cobalto-hondo: #c4caff;
-    --tinta: #f2f1ea;
-    --tinta-suave: #b8bce0;
-    --linea: #2c3680;
-    color-scheme: dark;
-  }
+/* Modo claro: dos tintas sobre papel, como una impresión (cobalto y negro). */
+:root[data-tema="claro"] {
+  --papel: #f4f4f0;
+  --papel-hondo: #e8e8e2;
+  --cobalto: #1d2cf3;
+  --cobalto-hondo: #121c9e;
+  --tinta: #141414;
+  --tinta-suave: #4b4b48;
+  --linea: #c9c9c2;
+  color-scheme: light;
 }
 
 @theme inline {

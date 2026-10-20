@@ -38,7 +38,7 @@ Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscu
 - **Máscara del nombre** ligada al scroll, con framer-motion.
 - **Proyectos con vista previa** que sigue al cursor, hecha con material real de cada uno: la estructura de ficheros del repositorio, los módulos configurados o sus fotos tramadas a dos tintas.
 - **Una página por proyecto** (`/proyectos/<id>`), generada al compilar, con el problema, mi rol, el resultado y el enlace al código.
-- **Modo claro y oscuro** con un botón fijo arriba a la derecha. Sigue la preferencia del sistema y recuerda la elección.
+- **Modo claro y oscuro** con un botón fijo arriba a la derecha. Entra en modo oscuro y recuerda la elección.
 - **Responsive**: en el móvil el campo responde al tocar y arrastrar, y el nombre se recompone en tres líneas.
 
 <p align="center">
@@ -83,6 +83,8 @@ lib/
   tema.ts                   lógica del tema
 public/
   cv-isabella-nottaro.pdf   CV descargable
+e2e/
+  modo-oscuro.spec.ts       test de aceptación: la web entra en modo oscuro
 ```
 
 ## Ejecutar en local
@@ -102,6 +104,26 @@ npx serve out
 ```
 
 `npm run build` crea la carpeta `out/` con la web completa, lista para cualquier hosting estático.
+
+## Pruebas
+
+Tests de aceptación con [Playwright](https://playwright.dev), en `e2e/`. La primera vez hay que descargar el navegador:
+
+```bash
+npx playwright install chromium
+```
+
+Contra la web en local (arranca `npm run dev` si no está en marcha):
+
+```bash
+npm test
+```
+
+Contra otra dirección, por ejemplo la publicada (en PowerShell: `$env:BASE_URL="https://isabellanottaro.vercel.app"; npm test`):
+
+```bash
+BASE_URL=https://isabellanottaro.vercel.app npm test
+```
 
 ## Desplegar
 
