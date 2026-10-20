@@ -64,6 +64,30 @@ test("la vista previa aparece justo encima del proyecto, sin taparlo, con ratón
   await pegadaEncima(1);
 });
 
+test("el árbol del repositorio está bien dibujado: ├─ para cada hermano y └─ para el último", async ({ page }) => {
+  // Dada la página de un proyecto con su árbol de ficheros,
+  await page.goto("/proyectos/entrega-ide");
+
+  // entonces las ramas siguen las reglas de un árbol de consola.
+  expect(await page.locator("pre").first().textContent()).toBe(
+    [
+      "EntregaIDE_IFNS/src/",
+      "├─ clases/",
+      "│  ├─ Cliente.java",
+      "│  ├─ Usuario.java",
+      "│  ├─ Producto.java",
+      "│  ├─ Categoria.java",
+      "│  ├─ Pedido.java",
+      "│  ├─ LineaPedido.java",
+      "│  ├─ EstadoPedido.java",
+      "│  ├─ Repartidor.java",
+      "│  └─ EstadoRepartidor.java",
+      "└─ main/",
+      "   └─ Main.java",
+    ].join("\n"),
+  );
+});
+
 test.describe("en una tablet táctil", () => {
   test.use({ viewport: { width: 820, height: 1180 }, hasTouch: true, isMobile: true });
 
