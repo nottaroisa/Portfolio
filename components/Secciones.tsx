@@ -1,5 +1,6 @@
 import { estudios, experiencia, perfil, proyectos, type Entrada } from "@/lib/data";
 import { Cabecera } from "./Cabecera";
+import { Comunidades } from "./Comunidades";
 import { Contacto } from "./Contacto";
 import { CreoContenido } from "./CreoContenido";
 import { ListaProyectos } from "./ListaProyectos";
@@ -78,6 +79,8 @@ export function Secciones() {
       </section>
 
       <CreoContenido />
+
+      <Comunidades />
 
       <Contacto />
     </div>

@@ -9,7 +9,6 @@ export const perfil = {
   busca: "Prácticas (FCT) de backend o full stack",
   estado: "Disponible para prácticas (FCT) de backend o full stack",
   idiomas: "Castellano e inglés B2 (Trinity)",
-  comunidad: "WordPress: traducciones, contribuciones y meetups",
   // Tomado del "Sobre mí" de mi CV (octubre de 2026).
   sobreMi: [
     "Estudio 2º de DAM y me oriento al desarrollo full stack, con base en Java, MySQL, HTML y CSS. Complemento el ciclo con formación propia en WordPress, IA generativa y transformación digital.",
@@ -207,4 +206,21 @@ export const contenido = {
 };
 
 export type Video = (typeof contenido.videos)[number];
+
+// Comunidades en las que participo fuera del aula.
+export const comunidades = [
+  {
+    nombre: "WordPress",
+    enlace: "https://central.wordcamp.org/",
+    papel: "Participante activa",
+    detalle:
+      "He participado en eventos de la comunidad: la WordCamp y diferentes meetups. También colaboro con traducciones y contribuciones.",
+  },
+  {
+    nombre: "GPUL",
+    enlace: "https://gpul.org/",
+    papel: "Participante activa",
+    detalle: "He participado en charlas de GPUL, el Grupo de Programadores e Usuarios de Linux, que promueve el software libre en A Coruña.",
+  },
+];
 
