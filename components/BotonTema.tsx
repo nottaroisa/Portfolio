@@ -18,14 +18,14 @@ export function BotonTema() {
       aria-label={`Cambiar a ${accion.toLowerCase()}`}
       title={`Cambiar a ${accion.toLowerCase()}`}
       // Hasta saber el tema (antes de hidratar) se reserva el sitio sin mostrarlo.
-      className={`fixed right-4 top-4 z-40 flex h-10 items-center gap-2 rounded-full border-2 border-tinta bg-papel px-2.5 text-[13px] text-tinta transition-colors hover:border-cobalto hover:text-cobalto sm:right-6 sm:top-6 md:right-8 md:top-7 ${
+      className={`fixed right-4 top-4 z-40 flex h-10 items-center gap-2 rounded-full border-2 border-tinta bg-papel px-2.5 text-[13px] text-tinta transition-[color,border-color,transform] duration-150 ease-out hover:border-cobalto hover:text-cobalto active:scale-[0.96] sm:right-6 sm:top-6 md:right-8 md:top-7 ${
         tema === null ? "invisible" : ""
       }`}
     >
       {/* Círculo mitad tinta, mitad papel: gira media vuelta al cambiar de tema. */}
       <svg
         viewBox="0 0 20 20"
-        className={`h-5 w-5 shrink-0 transition-transform duration-500 ${oscuro ? "rotate-180" : ""}`}
+        className={`h-5 w-5 shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] ${oscuro ? "rotate-180" : ""}`}
         aria-hidden="true"
       >
         <circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" />

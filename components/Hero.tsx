@@ -87,7 +87,7 @@ export function Hero() {
             <a href={`mailto:${enlaces.correo}`} className="bg-papel px-2 py-1 hover:text-cobalto">
               <Descifrar texto="Correo" />
             </a>
-            <a href={enlaces.cv} download className="bg-cobalto px-3 py-1 font-bold text-papel hover:bg-cobalto-hondo">
+            <a href={enlaces.cv} download className="inline-block bg-cobalto px-3 py-1 font-bold text-papel transition-transform duration-150 ease-out hover:bg-cobalto-hondo active:scale-[0.97]">
               <Descifrar texto="Descargar CV" />
             </a>
           </nav>

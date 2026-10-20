@@ -19,7 +19,7 @@ export function Contacto() {
       <div className="grid gap-12 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] md:items-end">
         <div>
           <CopiarCorreo correo={enlaces.correo} />
-          <a href={enlaces.cv} download className="mt-8 inline-block bg-cobalto px-4 py-2.5 text-[14px] font-bold text-papel hover:bg-cobalto-hondo">
+          <a href={enlaces.cv} download className="mt-8 inline-block bg-cobalto px-4 py-2.5 text-[14px] font-bold text-papel transition-transform duration-150 ease-out hover:bg-cobalto-hondo active:scale-[0.97]">
             <Descifrar texto="Descargar CV (PDF)" />
           </a>
         </div>

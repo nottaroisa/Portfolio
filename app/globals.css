@@ -12,6 +12,8 @@
   --tinta: #f2f1ea;
   --tinta-suave: #b8bce0;
   --linea: #2c3680;
+  /* La tinta cobalto de verdad, igual en los dos temas (la de la cortinilla). */
+  --plancha: #1d2cf3;
   color-scheme: dark;
 }
 
@@ -35,8 +37,14 @@
   --color-tinta: var(--tinta);
   --color-tinta-suave: var(--tinta-suave);
   --color-linea: var(--linea);
+  --color-plancha: var(--plancha);
   --font-serif: var(--font-instrument);
   --font-mono: var(--font-space-mono);
+}
+
+/* Al tocar, sin el recuadro gris del navegador: cada control tiene su propia respuesta. */
+html {
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
