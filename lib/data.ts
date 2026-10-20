@@ -211,16 +211,19 @@ export type Video = (typeof contenido.videos)[number];
 export const comunidades = [
   {
     nombre: "WordPress",
-    enlace: "https://central.wordcamp.org/",
     papel: "Participante activa",
     detalle:
-      "He participado en eventos de la comunidad: la WordCamp y diferentes meetups. También colaboro con traducciones y contribuciones.",
+      "He participado en eventos de la comunidad: la WordCamp y diferentes meetups. También colaboro con traducciones y contribuciones, y mi blog está hecho con WordPress.",
+    enlaces: [
+      { texto: "wpcoruña.com", url: "https://xn--wpcorua-9za.com/es/" },
+      { texto: "Leer mi blog", url: enlaces.blog },
+    ],
   },
   {
     nombre: "GPUL",
-    enlace: "https://gpul.org/",
     papel: "Participante activa",
     detalle: "He participado en charlas de GPUL, el Grupo de Programadores e Usuarios de Linux, que promueve el software libre en A Coruña.",
+    enlaces: [{ texto: "gpul.org", url: "https://gpul.org/" }],
   },
 ];
 

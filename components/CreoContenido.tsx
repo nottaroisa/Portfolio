@@ -50,10 +50,6 @@ export function CreoContenido() {
           <Descifrar texto="Ver mi TikTok" />
           <span aria-hidden="true"> ↗</span>
         </a>
-        <a href={enlaces.blog} target="_blank" rel="noopener noreferrer" className="inline-block py-1 text-cobalto underline underline-offset-4">
-          <Descifrar texto="Leer mi blog" />
-          <span aria-hidden="true"> ↗</span>
-        </a>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import { comunidades } from "@/lib/data";
 import { Cabecera } from "./Cabecera";
+import { Descifrar } from "./Descifrar";
 
 // Código de barras de la credencial: anchos y huecos de 1 a 4 px sacados del nombre.
 function codigoDeBarras(semilla: string) {
@@ -18,11 +19,8 @@ export function Comunidades() {
       <ul className="grid gap-x-12 gap-y-16 pt-12 sm:grid-cols-2 lg:max-w-5xl">
         {comunidades.map((c, i) => (
           <li key={c.nombre} className="min-w-0">
-            <a
-              href={c.enlace}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group relative block origin-[50%_-3rem] bg-papel-hondo px-6 pb-6 pt-10 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${
+            <div
+              className={`group relative origin-[50%_-3rem] bg-papel-hondo px-6 pb-6 pt-10 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${
                 i % 2 ? "hover:rotate-[1.5deg]" : "hover:-rotate-[1.5deg]"
               }`}
             >
@@ -30,21 +28,25 @@ export function Comunidades() {
               <span aria-hidden="true" className="absolute bottom-full left-1/2 h-12 w-[3px] -translate-x-1/2 bg-cobalto" />
               <span aria-hidden="true" className="absolute left-1/2 top-3 h-2.5 w-14 -translate-x-1/2 rounded-full bg-papel" />
 
-              <span className="block text-[13px] text-cobalto">{c.papel}</span>
-              <span className="mt-1 block font-serif text-[clamp(2.8rem,5vw,4.2rem)] leading-none transition-colors group-hover:text-cobalto">
-                {c.nombre}
-                <span aria-hidden="true" className="text-[0.45em]">
-                  {" "}
-                  ↗
-                </span>
-              </span>
-              <span className="mt-4 block max-w-[46ch] text-[15px] leading-relaxed">{c.detalle}</span>
-              <span aria-hidden="true" className="mt-6 flex h-7 overflow-hidden">
+              <p className="text-[13px] text-cobalto">{c.papel}</p>
+              <h3 className="mt-1 font-serif text-[clamp(2.8rem,5vw,4.2rem)] leading-none transition-colors group-hover:text-cobalto">{c.nombre}</h3>
+              <p className="mt-4 max-w-[46ch] text-[15px] leading-relaxed">{c.detalle}</p>
+              <ul className="mt-4 flex flex-wrap gap-x-5 text-[14px]">
+                {c.enlaces.map((e) => (
+                  <li key={e.url}>
+                    <a href={e.url} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-cobalto underline underline-offset-4">
+                      <Descifrar texto={e.texto} />
+                      <span aria-hidden="true"> ↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <span aria-hidden="true" className="mt-5 flex h-7 overflow-hidden">
                 {codigoDeBarras(c.nombre).map((b, j) => (
                   <span key={j} className="shrink-0 bg-tinta" style={{ width: b.ancho, marginRight: b.hueco }} />
                 ))}
               </span>
-            </a>
+            </div>
           </li>
         ))}
       </ul>
