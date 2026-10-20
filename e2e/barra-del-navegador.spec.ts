@@ -13,3 +13,18 @@ test("al elegir el modo claro, la barra del navegador pasa al color del papel", 
   // entonces la barra del navegador toma el color del papel.
   await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute("content", PAPEL);
 });
+
+test("con el modo claro elegido, la barra del navegador sigue clara al recargar", async ({ page }) => {
+  // Dado que se eligió el modo claro,
+  await page.goto("/");
+  await page.getByRole("button", { name: "Cambiar a modo claro" }).click();
+
+  // cuando se recarga la página y termina de cargar (el botón solo aparece tras hidratar),
+  await page.reload();
+  await expect(page.getByRole("button", { name: "Cambiar a modo oscuro" })).toBeVisible();
+
+  // entonces hay una sola barra y mantiene el color del papel.
+  const barra = page.locator('meta[name="theme-color"]');
+  await expect(barra).toHaveCount(1);
+  await expect(barra).toHaveAttribute("content", PAPEL);
+});

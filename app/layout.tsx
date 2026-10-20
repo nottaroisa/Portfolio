@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { Instrument_Serif, Space_Mono } from "next/font/google";
 import { BotonTema } from "@/components/BotonTema";
 import { Movimiento } from "@/components/Movimiento";
@@ -24,11 +24,6 @@ export const metadata: Metadata = {
   title: "Isabella Nottaro Sánchez · Desarrollo de aplicaciones",
   description:
     "Portfolio de Isabella Nottaro Sánchez, estudiante de 2º de DAM: proyectos, experiencia, estudios y contacto.",
-};
-
-// La web entra en modo oscuro: la barra del navegador, en azul de cianotipia.
-export const viewport: Viewport = {
-  themeColor: "#0d1347",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
