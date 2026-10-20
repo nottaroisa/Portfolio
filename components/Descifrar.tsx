@@ -1,17 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const RUIDO = "{}[]<>/;=+*01#&$%";
 
 // Texto que se "descifra": al pasar el ratón (o al enfocarlo con el teclado)
-// las letras pasan por caracteres de código hasta quedarse quietas.
+// las letras pasan por caracteres de código hasta quedarse quietas. Con
+// `alMontar`, se descifra también al aparecer (para avisos que cambian).
 // Adaptado del efecto text-randomized de ui-layouts.
-export function Descifrar({ texto, className }: { texto: string; className?: string }) {
+export function Descifrar({ texto, className, alMontar = false }: { texto: string; className?: string; alMontar?: boolean }) {
   const [mostrado, setMostrado] = useState(texto);
   const raf = useRef(0);
 
-  const lanzar = () => {
+  const lanzar = useCallback(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     cancelAnimationFrame(raf.current);
     const inicio = performance.now();
@@ -28,7 +29,11 @@ export function Descifrar({ texto, className }: { texto: string; className?: str
       if (avance < 1) raf.current = requestAnimationFrame(paso);
     };
     raf.current = requestAnimationFrame(paso);
-  };
+  }, [texto]);
+
+  useEffect(() => {
+    if (alMontar) lanzar();
+  }, [alMontar, lanzar]);
 
   useEffect(() => () => cancelAnimationFrame(raf.current), []);
 

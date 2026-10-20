@@ -1,5 +1,6 @@
 import { enlaces, perfil } from "@/lib/data";
 import { Cabecera } from "./Cabecera";
+import { CopiarCorreo } from "./CopiarCorreo";
 import { Descifrar } from "./Descifrar";
 
 const redes: [string, string][] = [
@@ -12,22 +13,12 @@ const redes: [string, string][] = [
 // Contacto: el correo como titular, porque es la acción que importa, y al lado
 // una ficha con el estado (si estoy disponible) y las redes.
 export function Contacto() {
-  const [usuario, dominio] = enlaces.correo.split("@");
-
   return (
     <section aria-labelledby="contacto">
       <Cabecera id="contacto" titulo="Contacto" nota="Respondo antes al correo que a los mensajes directos." />
       <div className="grid gap-12 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] md:items-end">
         <div>
-          <p className="text-[13px] text-tinta-suave">correo</p>
-          <a
-            href={`mailto:${enlaces.correo}`}
-            className="mt-1 block font-serif text-[clamp(1.9rem,4.4vw,4rem)] leading-tight text-cobalto hover:underline"
-          >
-            {/* Si no cabe en una línea, se parte por la arroba y no a mitad de palabra. */}
-            {usuario}@<wbr />
-            {dominio}
-          </a>
+          <CopiarCorreo correo={enlaces.correo} />
           <a href={enlaces.cv} download className="mt-8 inline-block bg-cobalto px-4 py-2.5 text-[14px] font-bold text-papel hover:bg-cobalto-hondo">
             <Descifrar texto="Descargar CV (PDF)" />
           </a>
