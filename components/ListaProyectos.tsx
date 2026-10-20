@@ -60,18 +60,19 @@ export function ListaProyectos() {
         ))}
       </ul>
 
-      {/* Vista previa flotante, solo con ratón. Decorativa: el enlace ya tiene el nombre. */}
+      {/* Vista previa flotante, solo con ratón. Decorativa: el enlace ya tiene el nombre.
+          Un solo contenedor: se anima al aparecer y, al pasar de un proyecto a otro,
+          cambia de contenido al instante (dos previas a la vez se pisarían). */}
       <AnimatePresence>
         {proyectoActivo && (
           <m.div
-            key={proyectoActivo.id}
+            key="previa"
             aria-hidden="true"
             className="pointer-events-none absolute left-0 top-0 z-20 hidden w-[300px] [@media(hover:hover)_and_(pointer:fine)]:block"
             style={{ x, y }}
             initial={{ opacity: 0, clipPath: reducido ? "inset(0)" : "inset(50% 0 50% 0)" }}
-            animate={{ opacity: 1, clipPath: "inset(0% 0 0% 0)" }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            animate={{ opacity: 1, clipPath: "inset(0% 0 0% 0)", transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } }}
+            exit={{ opacity: 0, transition: { duration: 0.15, ease: "easeOut" } }}
           >
             <PreviaProyecto proyecto={proyectoActivo} />
           </m.div>
