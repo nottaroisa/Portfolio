@@ -40,6 +40,30 @@ test("al pasar de un proyecto a otro con el ratón, solo se ve la vista previa d
   await expect(arbol(/^EntregaIDE_IFNS\/src\//)).toHaveCount(1);
 });
 
+test("la vista previa aparece justo encima del proyecto, sin taparlo, con ratón o con teclado", async ({ page }) => {
+  await page.goto("/");
+  const seccion = page.getByRole("region", { name: "Proyectos" });
+  const enlaces = seccion.getByRole("link");
+  const previa = seccion.locator("figure").filter({ visible: true });
+  const pegadaEncima = async (fila: number) => {
+    await page.waitForTimeout(500); // la previa llega con un muelle
+    const caja = (await previa.boundingBox())!;
+    const proyecto = (await enlaces.nth(fila).boundingBox())!;
+    expect(caja.y + caja.height).toBeLessThanOrEqual(proyecto.y + 1);
+    expect(caja.y + caja.height).toBeGreaterThan(proyecto.y - 40);
+  };
+
+  // Con el ratón sobre el segundo proyecto, la previa queda encima de su fila.
+  await enlaces.nth(1).hover();
+  await pegadaEncima(1);
+
+  // Con el teclado, al enfocar el segundo proyecto, también.
+  await page.mouse.move(0, 0);
+  await expect(previa).toHaveCount(0);
+  await enlaces.nth(1).focus();
+  await pegadaEncima(1);
+});
+
 test.describe("en una tablet táctil", () => {
   test.use({ viewport: { width: 820, height: 1180 }, hasTouch: true, isMobile: true });
 

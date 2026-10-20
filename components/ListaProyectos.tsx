@@ -20,11 +20,22 @@ export function ListaProyectos() {
   const x = useSpring(0, muelle);
   const y = useSpring(0, muelle);
 
+  // La primera vez la previa salta a su sitio; después llega con el muelle.
+  const colocar = (valor: typeof x, destino: number) => (activo ? valor.set(destino) : valor.jump(destino));
+
+  // La previa queda justo encima de la fila del proyecto, para no taparlo.
+  // Con ratón, en horizontal sigue al cursor; con teclado, se ancla al título.
+  const anclar = (fila: HTMLElement, cursorX?: number) => {
+    if (!caja.current) return;
+    const r = caja.current.getBoundingClientRect();
+    const f = fila.getBoundingClientRect();
+    colocar(y, f.top - r.top - 12);
+    colocar(x, cursorX === undefined ? f.left - r.left : cursorX - r.left + 24);
+  };
+
   const mover = (e: PointerEvent<HTMLDivElement>) => {
     if (e.pointerType !== "mouse" || !caja.current) return;
-    const r = caja.current.getBoundingClientRect();
-    x.set(e.clientX - r.left + 24);
-    y.set(e.clientY - r.top - 120);
+    x.set(e.clientX - caja.current.getBoundingClientRect().left + 24);
   };
 
   const proyectoActivo = proyectos.find((p) => p.id === activo);
@@ -36,8 +47,15 @@ export function ListaProyectos() {
           <li key={p.id} className="border-t border-linea last:border-b">
             <Link
               href={`/proyectos/${p.id}`}
-              onPointerEnter={(e) => e.pointerType === "mouse" && setActivo(p.id)}
-              onFocus={() => setActivo(p.id)}
+              onPointerEnter={(e) => {
+                if (e.pointerType !== "mouse") return;
+                anclar(e.currentTarget, e.clientX);
+                setActivo(p.id);
+              }}
+              onFocus={(e) => {
+                anclar(e.currentTarget);
+                setActivo(p.id);
+              }}
               onBlur={() => setActivo(null)}
               className="group grid grid-cols-[minmax(0,1fr)] gap-x-8 gap-y-2 py-6 md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] md:items-baseline md:py-8"
             >
@@ -60,7 +78,8 @@ export function ListaProyectos() {
         ))}
       </ul>
 
-      {/* Vista previa flotante, solo con ratón. Decorativa: el enlace ya tiene el nombre.
+      {/* Vista previa flotante, en dispositivos con ratón (también al moverse con el teclado).
+          Decorativa: el enlace ya tiene el nombre.
           Un solo contenedor: se anima al aparecer y, al pasar de un proyecto a otro,
           cambia de contenido al instante (dos previas a la vez se pisarían). */}
       <AnimatePresence>
@@ -68,7 +87,9 @@ export function ListaProyectos() {
           <m.div
             key="previa"
             aria-hidden="true"
-            className="pointer-events-none absolute left-0 top-0 z-20 hidden w-[300px] [@media(hover:hover)_and_(pointer:fine)]:block"
+            // El punto de anclaje es el borde de abajo (-translate-y-full usa la propiedad
+            // `translate`, que se suma al transform de framer-motion sin pisarlo).
+            className="pointer-events-none absolute left-0 top-0 z-20 hidden w-[300px] -translate-y-full [@media(hover:hover)_and_(pointer:fine)]:block"
             style={{ x, y }}
             initial={{ opacity: 0, clipPath: reducido ? "inset(0)" : "inset(50% 0 50% 0)" }}
             animate={{ opacity: 1, clipPath: "inset(0% 0 0% 0)", transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } }}
