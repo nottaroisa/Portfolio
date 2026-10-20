@@ -26,7 +26,7 @@ type Celdas = {
   ch: number;
   tam: number; // tamaño de letra en px
   base: Float32Array; // densidad de la imagen, 0–1
-  textura: Float32Array; // densidad de relleno de cada celda, 0.45–1
+  textura: Float32Array; // densidad de relleno de cada celda, del suelo (0.45 o 0.72) a 1
   energia: Float32Array; // perturbación del ratón, 0–1, decae sola
   pintado: Int16Array; // glifo dibujado en cada celda, para no repetir trabajo
 };
@@ -156,6 +156,9 @@ export function CampoAscii({ fuente, className, relleno }: Props) {
       const cols = Math.ceil(rect.width / cw);
       const rows = Math.ceil(rect.height / ch);
       atlas = crearAtlas(cw, ch, tam);
+      // En el móvil las letras del nombre miden pocas celdas: el relleno es más
+      // denso (solo # % @) para que cada letra se lea como una mancha.
+      const suelo = rect.width < 640 ? 0.72 : 0.45;
       celdas = {
         cols,
         rows,
@@ -167,7 +170,7 @@ export function CampoAscii({ fuente, className, relleno }: Props) {
           // Ruido por celda más una ondulación suave para que el relleno tenga ritmo.
           const h = (Math.imul(i, 2654435761) >>> 0) / 4294967296;
           const ola = 0.5 + 0.5 * Math.sin((i % cols) / 9 + Math.floor(i / cols) / 5);
-          return 0.45 + 0.35 * h + 0.2 * ola;
+          return suelo + (1 - suelo) * (0.64 * h + 0.36 * ola);
         }),
         energia: new Float32Array(cols * rows),
         pintado: new Int16Array(cols * rows).fill(-1),

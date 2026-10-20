@@ -57,13 +57,15 @@ export function Hero() {
             <mask id="nombre-vertical" maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="5000" height="5000">
               <rect x="-2000" y="-2000" width="5000" height="5000" fill="white" />
               <m.g style={{ scale: reducido ? 1 : escala, originX: "200px", originY: "380px" }}>
-                <text x="16" y="300" fill="black" stroke="black" strokeWidth="13" strokeLinejoin="round" fontSize="132" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-3">
+                {/* Letras grandes y un trazo fino que engorda los palos sin cerrar los huecos
+                    de la a, la b o la e: con caracteres de 9 px, el nombre se sigue leyendo. */}
+                <text x="8" y="290" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
                   Isabella
                 </text>
-                <text x="16" y="420" fill="black" stroke="black" strokeWidth="13" strokeLinejoin="round" fontSize="132" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-3">
+                <text x="8" y="420" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
                   Nottaro
                 </text>
-                <text x="16" y="540" fill="black" stroke="black" strokeWidth="13" strokeLinejoin="round" fontSize="132" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-3">
+                <text x="8" y="550" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
                   Sánchez
                 </text>
               </m.g>
