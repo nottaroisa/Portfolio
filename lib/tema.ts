@@ -8,6 +8,7 @@ export function temaActual(): Tema {
 
 export function fijarTema(tema: Tema) {
   document.documentElement.dataset.tema = tema;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", tema === "claro" ? "#f4f4f0" : "#0d1347");
   try {
     localStorage.setItem("tema", tema);
   } catch {
