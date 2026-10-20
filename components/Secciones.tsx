@@ -1,20 +1,9 @@
 import { contenido, enlaces, estudios, experiencia, perfil, proyectos, type Entrada } from "@/lib/data";
+import { Cabecera } from "./Cabecera";
+import { Contacto } from "./Contacto";
 import { Descifrar } from "./Descifrar";
 import { ListaProyectos } from "./ListaProyectos";
 import { Texto } from "./Texto";
-
-// Cabecera de sección: el título en serif y, a la derecha, una línea en
-// monoespaciada que dice qué hay dentro.
-function Cabecera({ id, titulo, nota }: { id: string; titulo: string; nota?: string }) {
-  return (
-    <div className="mb-8 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b-2 border-tinta pb-3">
-      <h2 id={id} className="font-serif text-[clamp(2.6rem,7vw,6rem)] leading-[0.9]">
-        {titulo}
-      </h2>
-      {nota && <p className="text-[13px] text-tinta-suave">{nota}</p>}
-    </div>
-  );
-}
 
 function Listado({ entradas }: { entradas: Entrada[] }) {
   return (
@@ -109,33 +98,7 @@ export function Secciones() {
         </div>
       </section>
 
-      {/* Contacto: el correo como titular, porque es la acción que importa. */}
-      <section aria-labelledby="contacto">
-        <Cabecera id="contacto" titulo="Contacto" nota="Respondo antes al correo que a los mensajes directos." />
-        <a
-          href={`mailto:${enlaces.correo}`}
-          className="block break-all font-serif text-[clamp(1.6rem,4.4vw,4rem)] leading-tight text-cobalto hover:underline"
-        >
-          {enlaces.correo}
-        </a>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
-          <a href={enlaces.cv} download className="bg-cobalto px-4 py-2 font-bold text-papel hover:bg-cobalto-hondo">
-            <Descifrar texto="Descargar CV (PDF)" />
-          </a>
-          <a href={enlaces.linkedin} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-cobalto">
-            <Descifrar texto="LinkedIn" />
-          </a>
-          <a href={enlaces.github} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-cobalto">
-            <Descifrar texto="GitHub" />
-          </a>
-          <a href={enlaces.tiktok} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-cobalto">
-            <Descifrar texto="TikTok" />
-          </a>
-          <a href={enlaces.blog} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-cobalto">
-            <Descifrar texto="Blog" />
-          </a>
-        </div>
-      </section>
+      <Contacto />
     </div>
   );
 }

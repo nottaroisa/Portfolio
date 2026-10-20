@@ -7,6 +7,7 @@ export const perfil = {
   estudia: "2º DAM en CPR Liceo La Paz",
   stack: ["Java", "MySQL", "HTML", "CSS", "Git"],
   busca: "Prácticas (FCT) de backend o full stack",
+  estado: "Disponible para prácticas (FCT) de backend o full stack",
   idiomas: "Castellano e inglés B2 (Trinity)",
   comunidad: "WordPress: traducciones, contribuciones y meetups",
   // Tomado del "Sobre mí" de mi CV (octubre de 2026).
