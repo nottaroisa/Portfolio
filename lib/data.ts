@@ -186,6 +186,14 @@ export const estudios: Entrada[] = [
   },
 ];
 
+export type Video = {
+  id: string;
+  titulo: string;
+  vistas: string;
+  /** TikTok no deja reproducirlo fuera de su web (su servidor de vídeo lo deniega): se abre allí. */
+  soloEnTikTok?: boolean;
+};
+
 // Mi cuenta de TikTok. Las cifras son las públicas del perfil en la fecha indicada.
 export const contenido = {
   usuario: "@srtajeans",
@@ -197,15 +205,16 @@ export const contenido = {
   resumen:
     "Hago vídeos de tecnología: móviles, tablets, periféricos y trucos para el ordenador. Busco el tema, escribo el guion, lo produzco y lo publico yo, de principio a fin.",
   marcas: ["Xiaomi", "Huawei", "Telefónica", "PcComponentes", "Hyte", "AliExpress", "Temu", "Lewitt"],
-  // Los tres más vistos de los 45 que el perfil público deja ver sin iniciar sesión.
+  // Los más vistos de los 45 que el perfil público deja ver sin iniciar sesión, y el del PC pecera.
   videos: [
-    { id: "7021965904724495621", titulo: "Los interruptores Blue de un teclado mecánico", vistas: "3,5 M" },
+    { id: "7021965904724495621", titulo: "Los interruptores Blue de un teclado mecánico", vistas: "3,5 M", soloEnTikTok: true },
     { id: "7610354376309345558", titulo: "El Xiaomi Ultra más fino de la historia", vistas: "3,5 M" },
     { id: "7611105353064779010", titulo: "Xiaomi Pad 8 Pro: no extraño mi portátil", vistas: "1,4 M" },
-  ],
+    { id: "7142590131092999430", titulo: "Un PC «pecera» con refrigeración líquida", vistas: "647,1 mil" },
+  ] satisfies Video[] as Video[],
 };
 
-export type Video = (typeof contenido.videos)[number];
+export const urlDeVideo = (v: Video) => `https://www.tiktok.com/${contenido.usuario}/video/${v.id}`;
 
 // Comunidades en las que participo fuera del aula.
 export const comunidades = [

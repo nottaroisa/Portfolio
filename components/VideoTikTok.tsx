@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Video } from "@/lib/data";
+import { urlDeVideo, type Video } from "@/lib/data";
 
 const RAMPA = " .·:;-=+*#%@";
 // La portada mide 9:16; con celdas de Space Mono, 24 columnas por 22 filas la llenan.
@@ -46,6 +46,15 @@ function texturaPlay(semilla: string) {
 // sigue ligera y TikTok no pone cookies a quien solo está leyendo.
 export function VideoTikTok({ video }: { video: Video }) {
   const [cargado, setCargado] = useState(false);
+  const caja = "group @container relative block h-full w-full overflow-hidden text-left";
+  const portada = (
+    <pre
+      aria-hidden="true"
+      className="absolute inset-0 m-0 font-mono text-[6.8cqw] leading-[1.188] text-cobalto opacity-75 transition-[opacity,transform] duration-300 ease-out group-hover:scale-[1.03] group-hover:opacity-100 group-active:scale-[0.99]"
+    >
+      {texturaPlay(video.id)}
+    </pre>
+  );
 
   return (
     <figure className="min-w-0">
@@ -57,25 +66,27 @@ export function VideoTikTok({ video }: { video: Video }) {
             allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
             className="h-full w-full"
           />
+        ) : video.soloEnTikTok ? (
+          <a href={urlDeVideo(video)} target="_blank" rel="noopener noreferrer" aria-label={`Ver en TikTok: ${video.titulo}`} className={caja}>
+            {portada}
+            <span aria-hidden="true" className="absolute inset-x-0 top-0 bg-papel-hondo p-3 text-[12px] text-cobalto">
+              se abre en TikTok ↗
+            </span>
+          </a>
         ) : (
-          <button
-            type="button"
-            onClick={() => setCargado(true)}
-            aria-label={`Reproducir: ${video.titulo}`}
-            className="group @container relative block h-full w-full overflow-hidden text-left"
-          >
-            <pre
-              aria-hidden="true"
-              className="absolute inset-0 m-0 font-mono text-[6.8cqw] leading-[1.188] text-cobalto opacity-75 transition-[opacity,transform] duration-300 ease-out group-hover:scale-[1.03] group-hover:opacity-100 group-active:scale-[0.99]"
-            >
-              {texturaPlay(video.id)}
-            </pre>
+          <button type="button" onClick={() => setCargado(true)} aria-label={`Reproducir: ${video.titulo}`} className={caja}>
+            {portada}
           </button>
         )}
       </div>
       <figcaption className="mt-3">
         <span className="block font-serif text-[clamp(1.3rem,2vw,1.7rem)] leading-tight">{video.titulo}</span>
-        <span className="text-[13px] text-tinta-suave">{video.vistas} reproducciones</span>
+        <span className="flex flex-wrap items-baseline justify-between gap-x-3 text-[13px] text-tinta-suave">
+          {video.vistas} reproducciones
+          <a href={urlDeVideo(video)} target="_blank" rel="noopener noreferrer" className="inline-block py-1 text-cobalto hover:underline">
+            Ver en TikTok<span aria-hidden="true"> ↗</span>
+          </a>
+        </span>
       </figcaption>
     </figure>
   );
