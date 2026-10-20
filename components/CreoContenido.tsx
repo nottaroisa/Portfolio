@@ -1,6 +1,7 @@
 import { contenido, enlaces } from "@/lib/data";
 import { Cabecera } from "./Cabecera";
 import { Descifrar } from "./Descifrar";
+import { VideoTikTok } from "./VideoTikTok";
 
 // Cifra de la cuenta: se "calcula" al entrar en pantalla, solo barajando dígitos.
 function Cifra({ valor }: { valor: string }) {
@@ -27,6 +28,15 @@ export function CreoContenido() {
           <p className="mt-3 text-[13px] text-tinta-suave">Datos públicos del perfil, {contenido.fecha}.</p>
         </div>
       </div>
+
+      {/* En el móvil, carrusel horizontal que encaja cada vídeo; en pantallas anchas, los tres en fila. */}
+      <ul className="-mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0">
+        {contenido.videos.map((v) => (
+          <li key={v.id} className="w-[72%] shrink-0 snap-start sm:w-[45%] md:w-auto">
+            <VideoTikTok video={v} />
+          </li>
+        ))}
+      </ul>
 
       <p className="mt-14 text-[13px] text-tinta-suave">He trabajado con</p>
       <ul className="mt-1 flex flex-wrap gap-x-6 gap-y-1 font-serif text-[clamp(1.8rem,4vw,3.4rem)] leading-tight">
