@@ -44,7 +44,7 @@ export function Secciones() {
   return (
     <div className="mx-auto max-w-7xl space-y-32 px-4 pb-24 pt-8 sm:px-6 md:px-10">
       <section aria-labelledby="proyectos">
-        <Cabecera id="proyectos" titulo="Proyectos" nota={`${proyectos.length} proyectos. Pasa el ratón para ver cada uno.`} />
+        <Cabecera id="proyectos" titulo="Proyectos" nota={`Los ${proyectos.length} fijados en mi GitHub.`} />
         <ListaProyectos />
       </section>
 

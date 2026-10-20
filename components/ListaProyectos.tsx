@@ -10,8 +10,9 @@ import { PreviaProyecto } from "./PreviaProyecto";
 const muelle = { stiffness: 160, damping: 18, mass: 0.2 };
 
 // Lista de proyectos con la vista previa que sigue al ratón (adaptado de
-// image-reveal de ui-layouts). En pantallas táctiles la vista previa va debajo
-// de cada nombre, porque no hay ratón que seguir.
+// image-reveal de ui-layouts). Sin ratón (móviles y tablets) la vista previa va
+// debajo de cada nombre, porque no hay puntero que seguir: se decide por la
+// capacidad del dispositivo, no por el ancho de pantalla.
 export function ListaProyectos() {
   const caja = useRef<HTMLDivElement>(null);
   const [activo, setActivo] = useState<string | null>(null);
@@ -50,8 +51,8 @@ export function ListaProyectos() {
                 </span>
                 {p.stack.join(", ")}
               </span>
-              {/* Vista previa en línea para pantallas sin ratón. */}
-              <span className="block md:hidden">
+              {/* Vista previa en línea para pantallas sin ratón, bajo la ficha. */}
+              <span className="block md:col-start-2 [@media(hover:hover)_and_(pointer:fine)]:hidden">
                 <PreviaProyecto proyecto={p} />
               </span>
             </Link>
@@ -65,7 +66,7 @@ export function ListaProyectos() {
           <m.div
             key={proyectoActivo.id}
             aria-hidden="true"
-            className="pointer-events-none absolute left-0 top-0 z-20 hidden w-[300px] md:block"
+            className="pointer-events-none absolute left-0 top-0 z-20 hidden w-[300px] [@media(hover:hover)_and_(pointer:fine)]:block"
             style={{ x, y }}
             initial={{ opacity: 0, clipPath: reducido ? "inset(0)" : "inset(50% 0 50% 0)" }}
             animate={{ opacity: 1, clipPath: "inset(0% 0 0% 0)" }}
