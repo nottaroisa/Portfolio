@@ -101,16 +101,6 @@ function usePasoAlPasar() {
 export function VideoTikTok({ video }: { video: Video }) {
   const [cargado, setCargado] = useState(false);
   const { paso, alEntrar, alSalir } = usePasoAlPasar();
-  const caja = "group @container relative block h-full w-full overflow-hidden text-left";
-  const portada = (
-    <pre
-      aria-hidden="true"
-      className="absolute inset-0 m-0 font-mono text-cobalto opacity-90 transition-[opacity,transform] duration-300 ease-out group-hover:opacity-100 group-active:scale-[0.98]"
-      style={{ fontSize: `${LETRA_CQW}cqw`, lineHeight: RENGLON }}
-    >
-      {texturaPlay(video.id, paso)}
-    </pre>
-  );
 
   return (
     <figure className="min-w-0">
@@ -122,31 +112,22 @@ export function VideoTikTok({ video }: { video: Video }) {
             allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
             className="h-full w-full"
           />
-        ) : video.soloEnTikTok ? (
-          <a
-            href={urlDeVideo(video)}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Ver en TikTok: ${video.titulo}`}
-            className={caja}
-            onPointerEnter={alEntrar}
-            onPointerLeave={alSalir}
-          >
-            {portada}
-            <span aria-hidden="true" className="absolute inset-x-0 top-0 bg-papel-hondo p-3 text-[12px] text-cobalto">
-              se abre en TikTok ↗
-            </span>
-          </a>
         ) : (
           <button
             type="button"
             onClick={() => setCargado(true)}
             aria-label={`Reproducir: ${video.titulo}`}
-            className={caja}
+            className="group @container relative block h-full w-full overflow-hidden text-left"
             onPointerEnter={alEntrar}
             onPointerLeave={alSalir}
           >
-            {portada}
+            <pre
+              aria-hidden="true"
+              className="absolute inset-0 m-0 font-mono text-cobalto opacity-90 transition-[opacity,transform] duration-300 ease-out group-hover:opacity-100 group-active:scale-[0.98]"
+              style={{ fontSize: `${LETRA_CQW}cqw`, lineHeight: RENGLON }}
+            >
+              {texturaPlay(video.id, paso)}
+            </pre>
           </button>
         )}
       </div>

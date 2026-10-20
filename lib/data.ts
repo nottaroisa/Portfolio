@@ -192,14 +192,14 @@ export type Video = {
   id: string;
   titulo: string;
   vistas: string;
-  /** TikTok no deja reproducirlo fuera de su web (su servidor de vídeo lo deniega): se abre allí. */
-  soloEnTikTok?: boolean;
 };
 
 export type Marca = {
   nombre: string;
   web: string;
   videos: { id: string; titulo: string }[];
+  /** Cuando la colaboración no fue un vídeo de TikTok (por ejemplo, una historia de Instagram). */
+  nota?: string;
   pendiente?: string;
 };
 
@@ -213,8 +213,8 @@ export const contenido = {
   videosPublicados: "240",
   resumen:
     "Hago vídeos de tecnología: móviles, tablets, periféricos y trucos para el ordenador. Busco el tema, escribo el guion, lo produzco y lo publico yo, de principio a fin.",
-  // Marcas con las que he trabajado: su web y los vídeos en los que salen (de los
-  // que enseña el perfil público; los que faltan, pendientes).
+  // Marcas con las que he trabajado: su web y los vídeos en los que salen; si la
+  // colaboración no fue un vídeo, una nota (y lo que falta, pendiente).
   marcas: [
     {
       nombre: "Xiaomi",
@@ -232,8 +232,12 @@ export const contenido = {
         { id: "7561130292447137046", titulo: "Huawei Watch GT 6" },
       ],
     },
-    { nombre: "Telefónica", web: "https://www.telefonica.com/es/", videos: [], pendiente: "[PENDIENTE: enlace al vídeo]" },
-    { nombre: "PcComponentes", web: "https://www.pccomponentes.com/", videos: [], pendiente: "[PENDIENTE: enlace al vídeo]" },
+    {
+      nombre: "Telefónica",
+      web: "https://www.telefonica.com/es/",
+      videos: [{ id: "7177478672172158213", titulo: "Todos en la foto, con Telefónica" }],
+    },
+    { nombre: "PcComponentes", web: "https://www.pccomponentes.com/", videos: [], nota: "Historia de Instagram" },
     { nombre: "Hyte", web: "https://hyte.com/", videos: [], pendiente: "[PENDIENTE: enlace al vídeo]" },
     {
       nombre: "AliExpress",
@@ -251,11 +255,20 @@ export const contenido = {
         { id: "7541184125156363542", titulo: "Un ratón de 17 € de Temu" },
       ],
     },
-    { nombre: "Lewitt", web: "https://www.lewitt-audio.com/", videos: [], pendiente: "[PENDIENTE: enlace al vídeo]" },
+    {
+      nombre: "Lewitt",
+      web: "https://www.lewitt-audio.com/",
+      videos: [{ id: "7018246201665457414", titulo: "Prueba de sonido con un micrófono Lewitt" }],
+    },
+    {
+      nombre: "EnerYeti",
+      web: "https://eneryeti.es/",
+      videos: [{ id: "7155179017514126597", titulo: "EnerYeti en mi setup gaming" }],
+    },
   ] satisfies Marca[] as Marca[],
   // Los más vistos de los 45 que el perfil público deja ver sin iniciar sesión, y el del PC pecera.
   videos: [
-    { id: "7021965904724495621", titulo: "Los interruptores Blue de un teclado mecánico", vistas: "3,5 M", soloEnTikTok: true },
+    { id: "7021965904724495621", titulo: "Los interruptores Blue de un teclado mecánico", vistas: "3,5 M" },
     { id: "7610354376309345558", titulo: "El Xiaomi Ultra más fino de la historia", vistas: "3,5 M" },
     { id: "7611105353064779010", titulo: "Xiaomi Pad 8 Pro: no extraño mi portátil", vistas: "1,4 M" },
     { id: "7142590131092999430", titulo: "Un PC «pecera» con refrigeración líquida", vistas: "647,1 mil" },

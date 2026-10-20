@@ -12,6 +12,15 @@ function Reproducir() {
   );
 }
 
+// El anillo de una historia de Instagram, para las colaboraciones que no fueron un vídeo.
+function Historia() {
+  return (
+    <svg viewBox="0 0 12 12" aria-hidden="true" className="h-[0.75em] w-[0.75em] shrink-0">
+      <circle cx="6" cy="6" r="4.6" fill="none" stroke="currentColor" strokeWidth="1.8" />
+    </svg>
+  );
+}
+
 // Las marcas con las que he trabajado, como los créditos del final de un vídeo:
 // el nombre a un lado del eje central y, al otro, los vídeos en los que sale y
 // su web.
@@ -47,6 +56,14 @@ export function Creditos() {
                     </li>
                   ))}
                 </ul>
+              )}
+              {m.nota && (
+                <p className="flex items-baseline gap-2 py-1">
+                  <span className="text-cobalto">
+                    <Historia />
+                  </span>
+                  {m.nota}
+                </p>
               )}
               {m.pendiente && (
                 <p className="py-1 text-[13px]">

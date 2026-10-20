@@ -20,46 +20,45 @@ test("los vídeos de TikTok no se cargan hasta que se pulsan", async ({ page }) 
   await page.goto("/");
   const seccion = page.getByRole("region", { name: "Creo contenido" });
 
-  // Dado que hay tres vídeos para ver aquí y ningún reproductor cargado,
+  // Dado que los cuatro vídeos se ven aquí y no hay ningún reproductor cargado,
   const videos = seccion.getByRole("button", { name: /^Reproducir/ });
-  await expect(videos).toHaveCount(3);
+  await expect(videos).toHaveCount(4);
   await expect(seccion.locator("iframe")).toHaveCount(0);
 
-  // cuando se pulsa el primero,
+  // cuando se pulsa el primero, el de los interruptores Blue,
   await videos.first().click();
 
-  // entonces se carga su reproductor de TikTok.
-  await expect(seccion.locator('iframe[src^="https://www.tiktok.com/player/v1/7610354376309345558"]')).toBeVisible();
+  // entonces se carga su reproductor de TikTok aquí mismo, sin salir de la web.
+  await expect(seccion.locator('iframe[src^="https://www.tiktok.com/player/v1/7021965904724495621"]')).toBeVisible();
 });
 
 test("cada marca enlaza a su web y a los vídeos en los que sale", async ({ page }) => {
   // Dada la lista de marcas con las que he trabajado,
   await page.goto("/");
   const marcas = page.getByRole("list", { name: "Marcas con las que he trabajado" }).locator(":scope > li");
-  await expect(marcas).toHaveCount(8);
+  await expect(marcas).toHaveCount(9);
+  const video = (id: string) => `https://www.tiktok.com/@srtajeans/video/${id}`;
+  const marca = (nombre: string) => marcas.filter({ hasText: new RegExp(`^${nombre}`) });
 
-  // entonces cada una lleva a su web y, si la tengo, al vídeo en el que sale.
-  const xiaomi = marcas.filter({ hasText: /^Xiaomi/ });
-  await expect(xiaomi.getByRole("link", { name: /mi\.com/ })).toHaveAttribute("href", "https://www.mi.com/es/");
-  await expect(xiaomi.getByRole("link", { name: /Xiaomi 17 Ultra/ })).toHaveAttribute(
-    "href",
-    "https://www.tiktok.com/@srtajeans/video/7610354376309345558",
-  );
-  await expect(marcas.filter({ hasText: /^Lewitt/ }).getByRole("link", { name: /lewitt-audio\.com/ })).toHaveAttribute(
-    "href",
-    "https://www.lewitt-audio.com/",
-  );
+  // entonces cada una lleva a su web y al vídeo en el que sale.
+  await expect(marca("Xiaomi").getByRole("link", { name: /mi\.com/ })).toHaveAttribute("href", "https://www.mi.com/es/");
+  await expect(marca("Xiaomi").getByRole("link", { name: /Xiaomi 17 Ultra/ })).toHaveAttribute("href", video("7610354376309345558"));
+  await expect(marca("Telefónica").getByRole("link").first()).toHaveAttribute("href", video("7177478672172158213"));
+  await expect(marca("Lewitt").getByRole("link").first()).toHaveAttribute("href", video("7018246201665457414"));
+  await expect(marca("Lewitt").getByRole("link", { name: /lewitt-audio\.com/ })).toHaveAttribute("href", "https://www.lewitt-audio.com/");
+  await expect(marca("EnerYeti").getByRole("link").first()).toHaveAttribute("href", video("7155179017514126597"));
+  await expect(marca("EnerYeti").getByRole("link", { name: /eneryeti\.es/ })).toHaveAttribute("href", "https://eneryeti.es/");
+
+  // Con PcComponentes no hay vídeo: fue una historia de Instagram.
+  await expect(marca("PcComponentes")).toContainText("Historia de Instagram");
 });
 
-test("el vídeo de los interruptores Blue se abre en TikTok y está el del PC pecera", async ({ page }) => {
+test("todos los vídeos se ven aquí, también el de los interruptores Blue y el del PC pecera", async ({ page }) => {
   await page.goto("/");
   const seccion = page.getByRole("region", { name: "Creo contenido" });
 
-  // El de los interruptores Blue, que TikTok no deja reproducir fuera de su web, lleva a TikTok.
-  await expect(seccion.getByRole("link", { name: /^Ver en TikTok: Los interruptores Blue/ })).toHaveAttribute(
-    "href",
-    "https://www.tiktok.com/@srtajeans/video/7021965904724495621",
-  );
-  // Y el del PC pecera se puede ver aquí.
+  // Ninguna portada saca de la web: todas cargan el vídeo aquí.
+  await expect(seccion.getByRole("button", { name: /^Reproducir: Los interruptores Blue/ })).toHaveCount(1);
   await expect(seccion.getByRole("button", { name: /^Reproducir: .*pecera/ })).toHaveCount(1);
+  await expect(seccion.getByRole("link", { name: /^Ver en TikTok: / })).toHaveCount(0);
 });
