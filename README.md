@@ -8,7 +8,7 @@
 
 ### [Ver la web: isabellanottaro.vercel.app](https://isabellanottaro.vercel.app)
 
-[LinkedIn](https://www.linkedin.com/in/isabellanottarosanchez/) · [GitHub](https://github.com/nottaroisa) · [Correo](mailto:isabellafedericanottarosanchez02@liceolapaz.net) · [TikTok](https://www.tiktok.com/@SrtaJeans) · [Blog](https://blogisabellanottaro.blog)
+[LinkedIn](https://www.linkedin.com/in/isabellanottarosanchez/) · [GitHub](https://github.com/nottaroisa) · [Correo](mailto:isabellanottaro@gmail.com) · [TikTok](https://www.tiktok.com/@SrtaJeans) · [Blog](https://blogisabellanottaro.blog)
 
 </div>
 

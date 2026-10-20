@@ -20,7 +20,7 @@ export const perfil = {
 export const enlaces = {
   linkedin: "https://www.linkedin.com/in/isabellanottarosanchez/",
   github: "https://github.com/nottaroisa",
-  correo: "isabellafedericanottarosanchez02@liceolapaz.net",
+  correo: "isabellanottaro@gmail.com",
   tiktok: "https://www.tiktok.com/@SrtaJeans",
   blog: "https://blogisabellanottaro.blog",
   // Copia del CV de octubre de 2026 sin el teléfono (public/cv-isabella-nottaro.pdf).
