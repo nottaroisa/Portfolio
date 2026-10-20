@@ -38,8 +38,11 @@ Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscu
 - **Máscara del nombre** ligada al scroll, con framer-motion.
 - **Proyectos con vista previa** que sigue al cursor, hecha con material real de cada uno: la estructura de ficheros del repositorio o sus fotos tramadas a dos tintas. Son los repositorios fijados en mi perfil de GitHub.
 - **Una página por proyecto** (`/proyectos/<id>`), generada al compilar, con el problema, mi rol, el resultado y el enlace al código.
-- **Modo claro y oscuro** con un botón fijo arriba a la derecha. Entra en modo oscuro y recuerda la elección.
-- **Responsive**: en el móvil el campo responde al tocar y arrastrar, y el nombre se recompone en tres líneas.
+- **Creo contenido**: resumen de mi cuenta de TikTok con cifras que se "calculan" al verse, y tres vídeos con portada en ASCII que solo cargan el reproductor de TikTok al pulsarlos (sin scripts ni cookies de TikTok hasta entonces).
+- **Comunidades** como credenciales de evento que cuelgan de su cinta.
+- **Contacto** con estado de disponibilidad y el correo que se copia al pulsarlo.
+- **Modo claro y oscuro** con un botón fijo arriba a la derecha. Entra en modo oscuro y recuerda la elección; la barra del navegador del móvil acompaña al tema.
+- **Responsive**: en el móvil el campo responde al tocar y el nombre se recompone en tres líneas; sin ratón (móvil o tablet), las vistas previas de los proyectos van debajo de cada uno.
 
 <p align="center">
   <img src=".github/capturas/movil-claro.jpg" alt="Portada en el móvil, modo claro" width="260">
@@ -77,14 +80,17 @@ components/
   Hero.tsx                  portada con la máscara del nombre
   ListaProyectos.tsx        lista con vista previa flotante
   TramaImagen.tsx           imágenes impresas a dos tintas
+  CreoContenido.tsx         TikTok: resumen, vídeos y marcas
+  VideoTikTok.tsx           vídeo que carga TikTok solo al pulsarlo
+  Comunidades.tsx           comunidades como credenciales de evento
+  Contacto.tsx              correo para copiar, estado y redes
   BotonTema.tsx             botón de modo claro/oscuro
 lib/
   data.ts                   todo el contenido: proyectos, experiencia, estudios y enlaces
   tema.ts                   lógica del tema
 public/
   cv-isabella-nottaro.pdf   CV descargable
-e2e/
-  modo-oscuro.spec.ts       test de aceptación: la web entra en modo oscuro
+e2e/                        tests de aceptación con Playwright, uno por funcionalidad
 ```
 
 ## Ejecutar en local
