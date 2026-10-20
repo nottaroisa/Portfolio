@@ -187,11 +187,16 @@ export const estudios: Entrada[] = [
   },
 ];
 
+// Mi cuenta de TikTok. Las cifras son las públicas del perfil en la fecha indicada.
 export const contenido = {
+  usuario: "@srtajeans",
   desde: 2020,
+  fecha: "octubre de 2026",
+  seguidores: "137,4 mil",
+  meGusta: "3,4 M",
+  videosPublicados: "240",
+  resumen:
+    "Hago vídeos de tecnología: móviles, tablets, periféricos y trucos para el ordenador. Busco el tema, escribo el guion, lo produzco y lo publico yo, de principio a fin.",
   marcas: ["Xiaomi", "Huawei", "Telefónica", "PcComponentes", "Hyte", "AliExpress", "Temu", "Lewitt"],
-  porQueImporta:
-    "Planifico, escribo el guion, produzco y publico cada pieza de forma autónoma, organizando el trabajo por etapas y cuidando la calidad, la narrativa y el diseño visual.",
-  videos: "[PENDIENTE: enlaces a 2 o 3 vídeos o colaboraciones destacadas]",
 };
 

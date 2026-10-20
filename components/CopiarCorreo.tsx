@@ -38,7 +38,7 @@ export function CopiarCorreo({ correo }: { correo: string }) {
         <span>
           correo ·{" "}
           <span role="status" className={estado === "copiado" ? "text-cobalto" : undefined}>
-            <Descifrar key={estado} texto={avisos[estado]} alMontar={estado !== "listo"} />
+            <Descifrar key={estado} texto={avisos[estado]} lanzarAl={estado === "listo" ? undefined : "montar"} />
           </span>
         </span>
         <a href={`mailto:${correo}`} className="inline-block py-1 hover:text-cobalto">

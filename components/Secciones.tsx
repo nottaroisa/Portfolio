@@ -1,7 +1,7 @@
-import { contenido, enlaces, estudios, experiencia, perfil, proyectos, type Entrada } from "@/lib/data";
+import { estudios, experiencia, perfil, proyectos, type Entrada } from "@/lib/data";
 import { Cabecera } from "./Cabecera";
 import { Contacto } from "./Contacto";
-import { Descifrar } from "./Descifrar";
+import { CreoContenido } from "./CreoContenido";
 import { ListaProyectos } from "./ListaProyectos";
 import { Texto } from "./Texto";
 
@@ -77,26 +77,7 @@ export function Secciones() {
         <Listado entradas={estudios} />
       </section>
 
-      <section aria-labelledby="contenido">
-        <Cabecera id="contenido" titulo="Comunico tecnología" nota={`TikTok @SrtaJeans desde ${contenido.desde}.`} />
-        <p className="max-w-[62ch] text-[15px] leading-relaxed">{contenido.porQueImporta}</p>
-        <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-1 font-serif text-[clamp(1.8rem,4vw,3.4rem)] leading-tight">
-          {contenido.marcas.map((m) => (
-            <li key={m}>{m}</li>
-          ))}
-        </ul>
-        <p className="mt-6 text-[13px]">
-          <Texto>{contenido.videos}</Texto>
-        </p>
-        <div className="mt-4 flex flex-wrap gap-6 text-[14px]">
-          <a href={enlaces.tiktok} target="_blank" rel="noopener noreferrer" className="text-cobalto underline underline-offset-4">
-            <Descifrar texto="Ver mi TikTok" />
-          </a>
-          <a href={enlaces.blog} target="_blank" rel="noopener noreferrer" className="text-cobalto underline underline-offset-4">
-            <Descifrar texto="Leer mi blog" />
-          </a>
-        </div>
-      </section>
+      <CreoContenido />
 
       <Contacto />
     </div>
