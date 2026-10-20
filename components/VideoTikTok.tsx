@@ -8,8 +8,16 @@ const RAMPA = " .·:;-=+*#%@";
 const COLUMNAS = 24;
 const FILAS = 22;
 
+// Ruido de 0 a 1 por celda (finalizador de murmur3): reparte el grano sin diagonales.
+function ruido(n: number) {
+  n = Math.imul(n ^ (n >>> 16), 0x85ebca6b);
+  n = Math.imul(n ^ (n >>> 13), 0xc2b2ae35);
+  return ((n ^ (n >>> 16)) >>> 0) / 4294967296;
+}
+
 // Un botón de reproducir dibujado con caracteres, como el campo de la portada:
-// denso dentro del triángulo y con grano alrededor, distinto para cada vídeo.
+// denso dentro del triángulo, un halo medio alrededor y grano suelto, distinto
+// para cada vídeo.
 function texturaPlay(semilla: string) {
   let h = 0;
   for (const c of semilla) h = Math.imul(h ^ c.charCodeAt(0), 2654435761) >>> 0;
@@ -20,10 +28,13 @@ function texturaPlay(semilla: string) {
       const x = (c + 0.5) / COLUMNAS;
       const y = (f + 0.5) / FILAS;
       // Triángulo que apunta a la derecha, centrado y con proporciones de icono.
-      const avance = (x - 0.36) / 0.34;
-      const dentro = avance >= 0 && avance <= 1 && Math.abs(y - 0.5) <= 0.11 * (1 - avance);
-      const ruido = ((Math.imul(f * COLUMNAS + c + 1, 2246822519) ^ h) >>> 0) / 4294967296;
-      const densidad = dentro ? 0.72 + 0.28 * ruido : ruido < 0.12 ? 0.1 + ruido : 0;
+      const avance = (x - 0.34) / 0.44;
+      const mitad = 0.15 * (1 - avance);
+      const distancia = Math.abs(y - 0.5);
+      const dentro = avance >= 0 && avance <= 1 && distancia <= mitad;
+      const halo = !dentro && avance >= -0.1 && avance <= 1.12 && distancia <= mitad + 0.045;
+      const r = ruido((f * COLUMNAS + c) ^ h);
+      const densidad = dentro ? 0.75 + 0.25 * r : halo ? 0.25 + 0.2 * r : r < 0.09 ? 0.08 + r : 0;
       linea += RAMPA[Math.round(densidad * (RAMPA.length - 1))];
     }
     lineas.push(linea);

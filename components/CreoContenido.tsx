@@ -30,7 +30,7 @@ export function CreoContenido() {
       </div>
 
       {/* En el móvil, carrusel horizontal que encaja cada vídeo; en pantallas anchas, los tres en fila. */}
-      <ul className="-mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0">
+      <ul className="-mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:max-w-[60rem] md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0">
         {contenido.videos.map((v) => (
           <li key={v.id} className="w-[72%] shrink-0 snap-start sm:w-[45%] md:w-auto">
             <VideoTikTok video={v} />
