@@ -8,6 +8,20 @@ async function esCertificadoConMiniatura(entrada: Locator, nombre: string) {
   await expect(enlace.locator(`img[src="/certificados/${nombre}.jpg"]`)).toBeVisible();
 }
 
+test("todas las miniaturas de certificados miden lo mismo", async ({ page }) => {
+  await page.goto("/");
+  const miniaturas = page.locator('img[src^="/certificados/"]');
+  await expect(miniaturas).toHaveCount(4);
+
+  const medidas = new Set<string>();
+  for (const miniatura of await miniaturas.all()) {
+    await miniatura.scrollIntoViewIfNeeded();
+    const caja = (await miniatura.boundingBox())!;
+    medidas.add(`${Math.round(caja.width)}x${Math.round(caja.height)}`);
+  }
+  expect([...medidas]).toHaveLength(1);
+});
+
 test("el inglés B2 es de 2020 y enseña el certificado de Trinity", async ({ page }) => {
   await page.goto("/");
   const ingles = page.getByRole("region", { name: "Estudios" }).getByRole("listitem").filter({ hasText: "Inglés B2" });
@@ -52,6 +66,10 @@ test("las certificaciones de LinkedIn aparecen con su entidad, su fecha y su cre
   );
   await esCertificadoConMiniatura(certificacion("WordPress Credits"), "wordpress-credits");
   await esCertificadoConMiniatura(certificacion("Industrias Culturales y Creativas"), "incyde");
+
+  // La de Pearson enseña su insignia de Credly y lleva a su credencial.
+  const pearson = certificacion("Generative AI Foundations").getByRole("link", { name: /Ver credencial/ });
+  await expect(pearson.locator('img[src="/certificados/pearson.jpg"]')).toBeVisible();
 
   // Eran la formación complementaria que faltaba por completar en estudios.
   await expect(page.getByRole("region", { name: "Estudios" })).not.toContainText("Formación complementaria");

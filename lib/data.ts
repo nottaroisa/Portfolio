@@ -141,6 +141,8 @@ export type Entrada = {
   enlace?: string;
   /** Certificado en PDF: public/certificados/<nombre>.pdf, con su miniatura <nombre>.jpg. */
   certificado?: string;
+  /** Miniatura del enlace a la credencial: public/certificados/<nombre>.jpg. */
+  miniatura?: string;
 };
 
 // Experiencia y estudios tomados del CV de octubre de 2026.
@@ -201,6 +203,7 @@ export const certificaciones: Entrada[] = [
     fechas: "Mayo de 2026, válida hasta mayo de 2031",
     detalle: "",
     enlace: "https://www.credly.com/badges/35a52464-3aa3-4bde-b13f-9ecc2665d093",
+    miniatura: "pearson",
   },
   {
     titulo: "Transformación Digital, Gestión Empresarial y Emprendimiento en las Industrias Culturales y Creativas",

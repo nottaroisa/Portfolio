@@ -6,6 +6,27 @@ import { CreoContenido } from "./CreoContenido";
 import { ListaProyectos } from "./ListaProyectos";
 import { Texto } from "./Texto";
 
+// Un certificado o una credencial que se abre en una pestaña nueva desde su miniatura.
+// Todas las miniaturas van en el mismo marco (4:3) y se ven enteras dentro de él.
+function Miniatura({ href, imagen, texto }: { href: string; imagen: string; texto: string }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="group mt-3 flex w-fit items-end gap-3 text-[13px] text-cobalto">
+      {/* eslint-disable-next-line @next/next/no-img-element -- web estática sin optimizador de imágenes */}
+      <img
+        src={`/certificados/${imagen}.jpg`}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="aspect-[4/3] w-32 shrink-0 border-2 border-cobalto bg-white object-contain transition-transform duration-200 ease-out group-hover:-rotate-1 group-hover:scale-[1.04]"
+      />
+      <span className="underline underline-offset-4">
+        {texto}
+        <span aria-hidden="true"> ↗</span>
+      </span>
+    </a>
+  );
+}
+
 function Listado({ entradas }: { entradas: Entrada[] }) {
   return (
     <ol>
@@ -27,31 +48,16 @@ function Listado({ entradas }: { entradas: Entrada[] }) {
               </p>
             )}
             {e.certificado && (
-              // El certificado en PDF, desde una miniatura de su primera página.
-              <a
-                href={`/certificados/${e.certificado}.pdf`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group mt-3 flex w-fit items-end gap-3 text-[13px] text-cobalto"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element -- web estática sin optimizador de imágenes */}
-                <img
-                  src={`/certificados/${e.certificado}.jpg`}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className="w-28 border-2 border-cobalto bg-white transition-transform duration-200 ease-out group-hover:-rotate-1 group-hover:scale-[1.04]"
-                />
-                <span className="underline underline-offset-4">
-                  Ver certificado (PDF)<span aria-hidden="true"> ↗</span>
-                </span>
-              </a>
+              <Miniatura href={`/certificados/${e.certificado}.pdf`} imagen={e.certificado} texto="Ver certificado (PDF)" />
             )}
-            {e.enlace && (
-              <a href={e.enlace} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block py-1 text-[13px] text-cobalto underline underline-offset-4">
-                Ver credencial<span aria-hidden="true"> ↗</span>
-              </a>
-            )}
+            {e.enlace &&
+              (e.miniatura ? (
+                <Miniatura href={e.enlace} imagen={e.miniatura} texto="Ver credencial" />
+              ) : (
+                <a href={e.enlace} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block py-1 text-[13px] text-cobalto underline underline-offset-4">
+                  Ver credencial<span aria-hidden="true"> ↗</span>
+                </a>
+              ))}
           </div>
         </li>
       ))}
