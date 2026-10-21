@@ -36,7 +36,8 @@ test("cada marca enlaza a su web y a los vídeos en los que sale", async ({ page
   // Dada la lista de marcas con las que he trabajado,
   await page.goto("/");
   const marcas = page.getByRole("list", { name: "Marcas con las que he trabajado" }).locator(":scope > li");
-  await expect(marcas).toHaveCount(9);
+  await expect(marcas).toHaveCount(8);
+  await expect(marcas.filter({ hasText: /^Hyte/ })).toHaveCount(0);
   const video = (id: string) => `https://www.tiktok.com/@srtajeans/video/${id}`;
   const marca = (nombre: string) => marcas.filter({ hasText: new RegExp(`^${nombre}`) });
 

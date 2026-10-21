@@ -1,5 +1,4 @@
 import { contenido, urlDeVideo } from "@/lib/data";
-import { Texto } from "./Texto";
 
 // Dominio legible de una web: "https://www.mi.com/es/" → "mi.com".
 const dominio = (url: string) => new URL(url).hostname.replace(/^www\./, "");
@@ -63,11 +62,6 @@ export function Creditos() {
                     <Historia />
                   </span>
                   {m.nota}
-                </p>
-              )}
-              {m.pendiente && (
-                <p className="py-1 text-[13px]">
-                  <Texto>{m.pendiente}</Texto>
                 </p>
               )}
               <a href={m.web} target="_blank" rel="noopener noreferrer" className="inline-block py-1 text-[13px] text-tinta-suave hover:text-cobalto">

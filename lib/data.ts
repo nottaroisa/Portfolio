@@ -137,7 +137,6 @@ export type Entrada = {
   lugar: string;
   fechas: string;
   detalle: string;
-  pendiente?: boolean;
 };
 
 // Experiencia y estudios tomados del CV de octubre de 2026.
@@ -161,7 +160,7 @@ export const experiencia: Entrada[] = [
 // Actuales primero.
 export const estudios: Entrada[] = [
   {
-    titulo: "CFGS Desarrollo de Aplicaciones Multiplataforma",
+    titulo: "Desarrollo de Aplicaciones Multiplataforma",
     lugar: "CPR Liceo La Paz",
     fechas: "2025 – 2027 (cursando 2º)",
     detalle:
@@ -180,11 +179,10 @@ export const estudios: Entrada[] = [
     detalle: "Certificado de nivel B2.",
   },
   {
-    titulo: "[PENDIENTE: estudios previos (ESO, Bachillerato…): el CV no los incluye]",
-    lugar: "[PENDIENTE: centro]",
-    fechas: "[PENDIENTE: fechas]",
+    titulo: "Bachillerato de Ciencias Sociales",
+    lugar: "IES Eusebio da Guarda",
+    fechas: "2023 – 2025",
     detalle: "",
-    pendiente: true,
   },
 ];
 
@@ -200,7 +198,6 @@ export type Marca = {
   videos: { id: string; titulo: string }[];
   /** Cuando la colaboración no fue un vídeo de TikTok (por ejemplo, una historia de Instagram). */
   nota?: string;
-  pendiente?: string;
 };
 
 // Mi cuenta de TikTok. Las cifras son las públicas del perfil en la fecha indicada.
@@ -214,7 +211,7 @@ export const contenido = {
   resumen:
     "Hago vídeos de tecnología: móviles, tablets, periféricos y trucos para el ordenador. Busco el tema, escribo el guion, lo produzco y lo publico yo, de principio a fin.",
   // Marcas con las que he trabajado: su web y los vídeos en los que salen; si la
-  // colaboración no fue un vídeo, una nota (y lo que falta, pendiente).
+  // colaboración no fue un vídeo, una nota.
   marcas: [
     {
       nombre: "Xiaomi",
@@ -238,7 +235,6 @@ export const contenido = {
       videos: [{ id: "7177478672172158213", titulo: "Todos en la foto, con Telefónica" }],
     },
     { nombre: "PcComponentes", web: "https://www.pccomponentes.com/", videos: [], nota: "Historia de Instagram" },
-    { nombre: "Hyte", web: "https://hyte.com/", videos: [], pendiente: "[PENDIENTE: enlace al vídeo]" },
     {
       nombre: "AliExpress",
       web: "https://es.aliexpress.com/",
