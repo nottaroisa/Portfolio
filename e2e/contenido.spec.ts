@@ -54,6 +54,16 @@ test("cada marca enlaza a su web y a los vídeos en los que sale", async ({ page
   await expect(marca("PcComponentes")).toContainText("Historia de Instagram");
 });
 
+test("cada vídeo enseña una miniatura de su portada antes de reproducirlo", async ({ page }) => {
+  await page.goto("/");
+  const videos = page.getByRole("region", { name: "Creo contenido" }).getByRole("button", { name: /^Reproducir/ });
+
+  // Cada portada lleva su propia miniatura, servida desde la web (no desde TikTok).
+  for (const id of ["7021965904724495621", "7610354376309345558", "7611105353064779010", "7142590131092999430"]) {
+    await expect(videos.locator(`img[src="/contenido/${id}.jpg"]`)).toHaveCount(1);
+  }
+});
+
 test("todos los vídeos se ven aquí, también el de los interruptores Blue y el del PC pecera", async ({ page }) => {
   await page.goto("/");
   const seccion = page.getByRole("region", { name: "Creo contenido" });

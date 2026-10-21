@@ -128,6 +128,18 @@ export function VideoTikTok({ video }: { video: Video }) {
             >
               {texturaPlay(video.id, paso)}
             </pre>
+            {/* Miniatura de la portada, como una ventana flotante en la esquina: sin tapar
+                el botón de play. Se sirve desde la web (las de TikTok caducan). */}
+            {/* eslint-disable-next-line @next/next/no-img-element -- web estática sin optimizador de imágenes */}
+            <img
+              src={`/contenido/${video.id}.jpg`}
+              alt=""
+              width={540}
+              height={960}
+              loading="lazy"
+              decoding="async"
+              className="absolute left-[6%] top-[3.5%] w-[26%] border-2 border-cobalto object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
+            />
           </button>
         )}
       </div>
