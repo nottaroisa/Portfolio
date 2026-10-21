@@ -137,6 +137,8 @@ export type Entrada = {
   lugar: string;
   fechas: string;
   detalle: string;
+  /** Enlace a la credencial (en certificaciones). */
+  enlace?: string;
 };
 
 // Experiencia y estudios tomados del CV de octubre de 2026.
@@ -167,12 +169,6 @@ export const estudios: Entrada[] = [
       "Java y programación orientada a objetos, multihilo y sockets; MySQL, modelo entidad-relación, ORM y NoSQL; interfaces gráficas y apps móviles; Git, UML y sistemas de gestión empresarial (ERP/CRM).",
   },
   {
-    titulo: "Formación complementaria",
-    lugar: "Formación propia",
-    fechas: "[PENDIENTE: fechas y centros]",
-    detalle: "WordPress, IA generativa y transformación digital.",
-  },
-  {
     titulo: "Inglés B2",
     lugar: "Trinity College London",
     fechas: "[PENDIENTE: año]",
@@ -182,6 +178,30 @@ export const estudios: Entrada[] = [
     titulo: "Bachillerato de Ciencias Sociales",
     lugar: "IES Eusebio da Guarda",
     fechas: "2023 – 2025",
+    detalle: "",
+  },
+];
+
+// Licencias y certificaciones de mi perfil de LinkedIn, de más reciente a más antigua.
+export const certificaciones: Entrada[] = [
+  {
+    titulo: "WordPress Credits",
+    lugar: "WordPress",
+    fechas: "Septiembre de 2026",
+    detalle: "",
+    enlace: "https://learn.wordpress.org/certificate/51a729a8/",
+  },
+  {
+    titulo: "Critical Career Skills – Generative AI Foundations",
+    lugar: "Pearson",
+    fechas: "Mayo de 2026, válida hasta mayo de 2031",
+    detalle: "",
+    enlace: "https://www.credly.com/badges/35a52464-3aa3-4bde-b13f-9ecc2665d093",
+  },
+  {
+    titulo: "Transformación Digital, Gestión Empresarial y Emprendimiento en las Industrias Culturales y Creativas",
+    lugar: "Fundación INCYDE",
+    fechas: "Septiembre de 2021",
     detalle: "",
   },
 ];

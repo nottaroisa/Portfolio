@@ -1,4 +1,4 @@
-import { estudios, experiencia, perfil, proyectos, type Entrada } from "@/lib/data";
+import { certificaciones, estudios, experiencia, perfil, proyectos, type Entrada } from "@/lib/data";
 import { Cabecera } from "./Cabecera";
 import { Comunidades } from "./Comunidades";
 import { Contacto } from "./Contacto";
@@ -25,6 +25,11 @@ function Listado({ entradas }: { entradas: Entrada[] }) {
               <p className="mt-2 max-w-[62ch] text-[14px] leading-relaxed">
                 <Texto>{e.detalle}</Texto>
               </p>
+            )}
+            {e.enlace && (
+              <a href={e.enlace} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block py-1 text-[13px] text-cobalto underline underline-offset-4">
+                Ver credencial<span aria-hidden="true"> ↗</span>
+              </a>
             )}
           </div>
         </li>
@@ -76,6 +81,11 @@ export function Secciones() {
       <section aria-labelledby="estudios">
         <Cabecera id="estudios" titulo="Estudios" nota="Actuales y anteriores." />
         <Listado entradas={estudios} />
+      </section>
+
+      <section aria-labelledby="certificaciones">
+        <Cabecera id="certificaciones" titulo="Certificaciones" nota="Licencias y certificados, con su credencial cuando la tiene." />
+        <Listado entradas={certificaciones} />
       </section>
 
       <CreoContenido />
