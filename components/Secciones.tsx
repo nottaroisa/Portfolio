@@ -26,6 +26,27 @@ function Listado({ entradas }: { entradas: Entrada[] }) {
                 <Texto>{e.detalle}</Texto>
               </p>
             )}
+            {e.certificado && (
+              // El certificado en PDF, desde una miniatura de su primera página.
+              <a
+                href={`/certificados/${e.certificado}.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mt-3 flex w-fit items-end gap-3 text-[13px] text-cobalto"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element -- web estática sin optimizador de imágenes */}
+                <img
+                  src={`/certificados/${e.certificado}.jpg`}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="w-28 border-2 border-cobalto bg-white transition-transform duration-200 ease-out group-hover:-rotate-1 group-hover:scale-[1.04]"
+                />
+                <span className="underline underline-offset-4">
+                  Ver certificado (PDF)<span aria-hidden="true"> ↗</span>
+                </span>
+              </a>
+            )}
             {e.enlace && (
               <a href={e.enlace} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block py-1 text-[13px] text-cobalto underline underline-offset-4">
                 Ver credencial<span aria-hidden="true"> ↗</span>

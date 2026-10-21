@@ -139,6 +139,8 @@ export type Entrada = {
   detalle: string;
   /** Enlace a la credencial (en certificaciones). */
   enlace?: string;
+  /** Certificado en PDF: public/certificados/<nombre>.pdf, con su miniatura <nombre>.jpg. */
+  certificado?: string;
 };
 
 // Experiencia y estudios tomados del CV de octubre de 2026.
@@ -149,7 +151,7 @@ export const experiencia: Entrada[] = [
     lugar: "Autónoma, en TikTok @SrtaJeans",
     fechas: "2020 – actualidad",
     detalle:
-      "Colaboraciones profesionales con Xiaomi, Huawei, Telefónica, PcComponentes, Hyte, AliExpress, Temu y Lewitt. Gestiono de forma autónoma cada proyecto de contenido: planificación, guion, producción y publicación.",
+      "Colaboraciones profesionales con Xiaomi, Huawei, Telefónica, PcComponentes, AliExpress, Temu, Lewitt y Eneryeti. Gestiono de forma autónoma cada proyecto de contenido: planificación, guion, producción y publicación.",
   },
   {
     titulo: "Ayudante de cocina",
@@ -159,7 +161,7 @@ export const experiencia: Entrada[] = [
   },
 ];
 
-// Actuales primero.
+// De más reciente a más antiguo.
 export const estudios: Entrada[] = [
   {
     titulo: "Desarrollo de Aplicaciones Multiplataforma",
@@ -169,16 +171,18 @@ export const estudios: Entrada[] = [
       "Java y programación orientada a objetos, multihilo y sockets; MySQL, modelo entidad-relación, ORM y NoSQL; interfaces gráficas y apps móviles; Git, UML y sistemas de gestión empresarial (ERP/CRM).",
   },
   {
-    titulo: "Inglés B2",
-    lugar: "Trinity College London",
-    fechas: "[PENDIENTE: año]",
-    detalle: "Certificado de nivel B2.",
-  },
-  {
     titulo: "Bachillerato de Ciencias Sociales",
     lugar: "IES Eusebio da Guarda",
     fechas: "2023 – 2025",
     detalle: "",
+  },
+  {
+    titulo: "Inglés B2",
+    lugar: "Trinity College London",
+    fechas: "2020",
+    detalle: "ISE II (Integrated Skills in English), nivel B2 del MCER, con mérito en comprensión lectora, expresión oral y comprensión auditiva.",
+    // Copia con el número de DNI tapado.
+    certificado: "trinity-b2",
   },
 ];
 
@@ -189,7 +193,7 @@ export const certificaciones: Entrada[] = [
     lugar: "WordPress",
     fechas: "Septiembre de 2026",
     detalle: "",
-    enlace: "https://learn.wordpress.org/certificate/51a729a8/",
+    certificado: "wordpress-credits",
   },
   {
     titulo: "Critical Career Skills – Generative AI Foundations",
@@ -201,8 +205,9 @@ export const certificaciones: Entrada[] = [
   {
     titulo: "Transformación Digital, Gestión Empresarial y Emprendimiento en las Industrias Culturales y Creativas",
     lugar: "Fundación INCYDE",
-    fechas: "Septiembre de 2021",
+    fechas: "Noviembre de 2021",
     detalle: "",
+    certificado: "incyde",
   },
 ];
 
@@ -277,9 +282,9 @@ export const contenido = {
       videos: [{ id: "7018246201665457414", titulo: "Prueba de sonido con un micrófono Lewitt" }],
     },
     {
-      nombre: "EnerYeti",
+      nombre: "Eneryeti",
       web: "https://eneryeti.es/",
-      videos: [{ id: "7155179017514126597", titulo: "EnerYeti en mi setup gaming" }],
+      videos: [{ id: "7155179017514126597", titulo: "Eneryeti en mi setup gaming" }],
     },
   ] satisfies Marca[] as Marca[],
   // Los más vistos de los 45 que el perfil público deja ver sin iniciar sesión, y el del PC pecera.

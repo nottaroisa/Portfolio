@@ -47,8 +47,9 @@ test("cada marca enlaza a su web y a los vídeos en los que sale", async ({ page
   await expect(marca("Telefónica").getByRole("link").first()).toHaveAttribute("href", video("7177478672172158213"));
   await expect(marca("Lewitt").getByRole("link").first()).toHaveAttribute("href", video("7018246201665457414"));
   await expect(marca("Lewitt").getByRole("link", { name: /lewitt-audio\.com/ })).toHaveAttribute("href", "https://www.lewitt-audio.com/");
-  await expect(marca("EnerYeti").getByRole("link").first()).toHaveAttribute("href", video("7155179017514126597"));
-  await expect(marca("EnerYeti").getByRole("link", { name: /eneryeti\.es/ })).toHaveAttribute("href", "https://eneryeti.es/");
+  await expect(marca("Eneryeti").getByRole("link").first()).toHaveAttribute("href", video("7155179017514126597"));
+  await expect(marca("Eneryeti").getByRole("link", { name: /eneryeti\.es/ })).toHaveAttribute("href", "https://eneryeti.es/");
+  await expect(page.getByText(/EnerYeti/)).toHaveCount(0);
 
   // Con PcComponentes no hay vídeo: fue una historia de Instagram.
   await expect(marca("PcComponentes")).toContainText("Historia de Instagram");

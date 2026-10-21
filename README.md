@@ -18,7 +18,7 @@
 
 Soy Isabella. Estudio 2º de **Desarrollo de Aplicaciones Multiplataforma** en CPR Liceo La Paz (2025–2027), después del Bachillerato de Ciencias Sociales en el IES Eusebio da Guarda (2023–2025), y me oriento al desarrollo **full stack**, con base en Java, MySQL, HTML y CSS. Busco prácticas (FCT) de backend o full stack.
 
-Desde 2020 hago **contenido tecnológico en castellano** en TikTok ([@SrtaJeans](https://www.tiktok.com/@SrtaJeans)) y he colaborado con marcas como Xiaomi, Huawei, Telefónica, PcComponentes, AliExpress, Temu, Lewitt y EnerYeti. Explicar tecnología me ha enseñado a organizarme con autonomía, a cuidar cada entrega y a contar las cosas de forma que se entiendan.
+Desde 2020 hago **contenido tecnológico en castellano** en TikTok ([@SrtaJeans](https://www.tiktok.com/@SrtaJeans)) y he colaborado con marcas como Xiaomi, Huawei, Telefónica, PcComponentes, AliExpress, Temu, Lewitt y Eneryeti. Explicar tecnología me ha enseñado a organizarme con autonomía, a cuidar cada entrega y a contar las cosas de forma que se entiendan.
 
 Participo en la comunidad de **WordPress** (WordCamp, meetups, traducciones y contribuciones) y en charlas de **GPUL**, y tengo las certificaciones *WordPress Credits*, *Generative AI Foundations* (Pearson) y *Transformación Digital en las Industrias Culturales y Creativas* (Fundación INCYDE).
 
