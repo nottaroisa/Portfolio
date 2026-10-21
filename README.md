@@ -16,13 +16,15 @@
 
 ## Sobre mí
 
-Soy Isabella. Estudio 2º de **Desarrollo de Aplicaciones Multiplataforma** en CPR Liceo La Paz (2025–2027) y me oriento al desarrollo **full stack**, con base en Java, MySQL, HTML y CSS. Busco prácticas (FCT) de backend o full stack.
+Soy Isabella. Estudio 2º de **Desarrollo de Aplicaciones Multiplataforma** en CPR Liceo La Paz (2025–2027), después del Bachillerato de Ciencias Sociales en el IES Eusebio da Guarda (2023–2025), y me oriento al desarrollo **full stack**, con base en Java, MySQL, HTML y CSS. Busco prácticas (FCT) de backend o full stack.
 
-Desde 2020 hago **contenido tecnológico en castellano** en TikTok ([@SrtaJeans](https://www.tiktok.com/@SrtaJeans)) y he colaborado con marcas como Xiaomi, Huawei, Telefónica, PcComponentes, Hyte, AliExpress, Temu y Lewitt. Explicar tecnología me ha enseñado a organizarme con autonomía, a cuidar cada entrega y a contar las cosas de forma que se entiendan.
+Desde 2020 hago **contenido tecnológico en castellano** en TikTok ([@SrtaJeans](https://www.tiktok.com/@SrtaJeans)) y he colaborado con marcas como Xiaomi, Huawei, Telefónica, PcComponentes, AliExpress, Temu, Lewitt y EnerYeti. Explicar tecnología me ha enseñado a organizarme con autonomía, a cuidar cada entrega y a contar las cosas de forma que se entiendan.
+
+Participo en la comunidad de **WordPress** (WordCamp, meetups, traducciones y contribuciones) y en charlas de **GPUL**, y tengo las certificaciones *WordPress Credits*, *Generative AI Foundations* (Pearson) y *Transformación Digital en las Industrias Culturales y Creativas* (Fundación INCYDE).
 
 ## El proyecto
 
-Mi portfolio no es una plantilla: está hecho de **caracteres**. La portada es un campo ASCII dibujado en un canvas que forma mi monograma y se reordena al pasar el ratón: donde lo mueves, los caracteres se convierten en símbolos de código y dejan una estela. Al hacer scroll, el papel cubre el campo y los caracteres siguen vivos solo **dentro de las letras de mi nombre**.
+Mi portfolio no es una plantilla: está hecho de **caracteres**. La portada es un campo ASCII dibujado en un canvas que forma mis iniciales (IFNS) y se reordena al pasar el ratón: donde lo mueves, los caracteres se convierten en símbolos de código y dejan una estela. Al hacer scroll, el papel cubre el campo y los caracteres siguen vivos solo **dentro de las letras de mi nombre**.
 
 Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscuro** la web se convierte en una cianotipia, el negativo de esa impresión: fondo azul de Prusia y tinta de papel.
 
@@ -38,9 +40,11 @@ Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscu
 - **Máscara del nombre** ligada al scroll, con framer-motion.
 - **Proyectos con vista previa** que sigue al cursor, hecha con material real de cada uno: la estructura de ficheros del repositorio o sus fotos tramadas a dos tintas. Son los repositorios fijados en mi perfil de GitHub.
 - **Una página por proyecto** (`/proyectos/<id>`), generada al compilar, con el problema, mi rol, el resultado y el enlace al código.
-- **Creo contenido**: resumen de mi cuenta de TikTok con cifras que se "calculan" al verse, y tres vídeos con portada en ASCII que solo cargan el reproductor de TikTok al pulsarlos (sin scripts ni cookies de TikTok hasta entonces).
-- **Comunidades** como credenciales de evento que cuelgan de su cinta.
-- **Contacto** con estado de disponibilidad y el correo que se copia al pulsarlo.
+- **Creo contenido**: resumen de mi cuenta de TikTok con cifras que se "calculan" al verse, y cuatro vídeos con un botón de play dibujado en ASCII y una miniatura de su portada. El reproductor de TikTok solo se carga al pulsarlos (sin scripts ni cookies de TikTok hasta entonces).
+- **Créditos**: las marcas con las que he trabajado, como los créditos del final de un vídeo, cada una con sus vídeos y su web.
+- **Estudios y certificaciones**, con enlace a la credencial cuando la tiene.
+- **Comunidades** como credenciales de evento que cuelgan de su cinta: WordPress Coruña (con mi blog) y GPUL.
+- **Contacto** con estado de disponibilidad, el correo que se copia al pulsarlo y un botón «Escríbeme un correo» que lo abre con asunto y saludo ya puestos (también desde Gmail).
 - **Modo claro y oscuro** con un botón fijo arriba a la derecha. Entra en modo oscuro y recuerda la elección; la barra del navegador del móvil acompaña al tema.
 - **Responsive**: en el móvil el campo responde al tocar y el nombre se recompone en tres líneas; sin ratón (móvil o tablet), las vistas previas de los proyectos van debajo de cada uno.
 
@@ -52,7 +56,7 @@ Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscu
 
 ### Accesibilidad y rendimiento
 
-- **Lighthouse:** 100 en accesibilidad, buenas prácticas y SEO, y 99–100 en rendimiento, en móvil y escritorio.
+- **Lighthouse** (medición de la primera versión, octubre de 2026): 100 en accesibilidad, buenas prácticas y SEO, y 99–100 en rendimiento, en móvil y escritorio.
 - **Contraste WCAG AA** comprobado texto a texto en los dos temas. Texto principal a más de 15:1.
 - Respeta **`prefers-reduced-motion`**: sin animación de entrada, sin estela y sin escalado.
 - El canvas es decorativo (`aria-hidden`): el nombre, los textos y todos los enlaces están en el HTML y se pueden recorrer con el teclado.
@@ -80,16 +84,20 @@ components/
   Hero.tsx                  portada con la máscara del nombre
   ListaProyectos.tsx        lista con vista previa flotante
   TramaImagen.tsx           imágenes impresas a dos tintas
-  CreoContenido.tsx         TikTok: resumen, vídeos y marcas
-  VideoTikTok.tsx           vídeo que carga TikTok solo al pulsarlo
+  CreoContenido.tsx         TikTok: resumen y vídeos
+  VideoTikTok.tsx           vídeo con play en ASCII que carga TikTok solo al pulsarlo
+  Creditos.tsx              marcas con sus vídeos y su web
   Comunidades.tsx           comunidades como credenciales de evento
-  Contacto.tsx              correo para copiar, estado y redes
+  Contacto.tsx              estado, redes y botones de contacto
+  CopiarCorreo.tsx          correo que se copia al pulsarlo
   BotonTema.tsx             botón de modo claro/oscuro
 lib/
-  data.ts                   todo el contenido: proyectos, experiencia, estudios y enlaces
+  data.ts                   todo el contenido: proyectos, experiencia, estudios, certificaciones, vídeos y enlaces
+  correo.ts                 correo preparado (asunto y saludo) para mailto y Gmail
   tema.ts                   lógica del tema
 public/
   cv-isabella-nottaro.pdf   CV descargable
+  contenido/                portadas de los vídeos de TikTok
 e2e/                        tests de aceptación con Playwright, uno por funcionalidad
 ```
 
@@ -125,6 +133,8 @@ Contra la web en local (arranca `npm run dev` si no está en marcha):
 npm test
 ```
 
+Son 24 tests, uno por cada cosa que la web promete: el modo oscuro, el contacto, los proyectos, el contenido, las comunidades, los estudios, el móvil y la tablet. La primera vez que se lanzan contra `npm run dev`, Next.js compila las páginas mientras llegan las peticiones y algún test puede pasarse de tiempo; al repetirlos, pasan.
+
 Contra otra dirección, por ejemplo la publicada (en PowerShell: `$env:BASE_URL="https://isabellanottaro.vercel.app"; npm test`):
 
 ```bash
@@ -146,6 +156,6 @@ Para desplegarla en otro sitio: en Vercel se importa el repositorio y detecta Ne
 
 <div align="center">
 
-Primera versión · octubre de 2026 · hecho por Isabella Nottaro Sánchez
+Octubre de 2026 · hecho por Isabella Nottaro Sánchez
 
 </div>
