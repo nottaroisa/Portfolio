@@ -82,11 +82,6 @@ export default async function PaginaProyecto(props: PageProps<"/proyectos/[id]">
                   Abrir la demo
                 </a>
               )}
-              {p.pendiente && (
-                <span className="text-[13px]">
-                  <Texto>{p.pendiente}</Texto>
-                </span>
-              )}
             </div>
           </div>
         </div>

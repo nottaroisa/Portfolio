@@ -41,7 +41,6 @@ export type Proyecto = {
   resultado: string;
   repo?: string;
   demo?: string;
-  pendiente?: string;
   vista: VistaPrevia;
 };
 
@@ -58,7 +57,7 @@ export const proyectos: Proyecto[] = [
     plataforma: "web",
     problema:
       "Una web propia para presentar mis proyectos, mi experiencia y mi contenido que se recuerde: un campo de caracteres en canvas que sigue al ratón y, al hacer scroll, deja mi nombre recortado.",
-    rol: "[PENDIENTE: cuenta qué decidiste y qué hiciste tú]",
+    rol: "Lo he hecho con vibe coding junto a Claude: conozco las tecnologías que usa, pero por falta de tiempo lo co-desarrollé con Claude en lugar de escribirlo todo a mano.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Canvas 2D", "framer-motion", "Playwright"],
     resultado: "Web estática publicada en Vercel, con modo claro y oscuro y tests de aceptación con Playwright.",
     repo: "https://github.com/nottaroisa/Portfolio",
@@ -87,7 +86,7 @@ export const proyectos: Proyecto[] = [
     plataforma: "consola",
     problema:
       "Modelar en Java un sistema de reparto: clientes, productos por categoría, pedidos con sus líneas y repartidores con estado, para la asignatura de Entornos de Desarrollo.",
-    rol: "[PENDIENTE: confirma si lo hiciste tú sola y qué partes destacarías]",
+    rol: "Creadora del trabajo: lo hice yo para clase, en la asignatura de Entornos de Desarrollo.",
     stack: ["Java", "Eclipse", "Git"],
     resultado: "Entrega con el historial de commits limpio, que refleja el proceso de trabajo real.",
     repo: "https://github.com/nottaroisa/EntregaIDE",
@@ -121,7 +120,6 @@ export const proyectos: Proyecto[] = [
     stack: ["HTML5", "CSS Grid", "Flexbox", "Variables CSS", "Nesting"],
     resultado: "Responsive en móvil, tablet y escritorio con media queries; rejilla de 4 columnas en escritorio.",
     repo: "https://github.com/nottaroisa/PGridNottaroIsabella",
-    pendiente: "[PENDIENTE: publicarla en GitHub Pages para enlazar la demo]",
     vista: {
       tipo: "imagenes",
       imagenes: [

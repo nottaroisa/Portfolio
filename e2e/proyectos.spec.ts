@@ -88,6 +88,27 @@ test("el árbol del repositorio está bien dibujado: ├─ para cada hermano y 
   );
 });
 
+test("cada proyecto cuenta mi rol real, y el moodboard solo enlaza a su repositorio", async ({ page }) => {
+  const rol = (pagina: import("@playwright/test").Page) => pagina.locator("dt", { hasText: "Mi rol" }).locator("xpath=following-sibling::dd[1]");
+
+  // El portfolio, co-desarrollado con Claude por falta de tiempo.
+  await page.goto("/proyectos/portfolio");
+  await expect(rol(page)).toContainText("Claude");
+  await expect(rol(page)).not.toContainText("PENDIENTE");
+
+  // EntregaIDE, un trabajo de clase que hice yo.
+  await page.goto("/proyectos/entrega-ide");
+  await expect(rol(page)).toContainText("Creadora del trabajo");
+  await expect(rol(page)).not.toContainText("PENDIENTE");
+
+  // El moodboard: solo el enlace al repositorio, sin demo ni GitHub Pages.
+  await page.goto("/proyectos/pgrid-moodboard");
+  const main = page.getByRole("main");
+  await expect(main.getByRole("link", { name: "Ver el código en GitHub" })).toHaveAttribute("href", "https://github.com/nottaroisa/PGridNottaroIsabella");
+  await expect(main).not.toContainText("GitHub Pages");
+  await expect(main.getByRole("link", { name: /demo/i })).toHaveCount(0);
+});
+
 test.describe("en una tablet táctil", () => {
   test.use({ viewport: { width: 820, height: 1180 }, hasTouch: true, isMobile: true });
 
