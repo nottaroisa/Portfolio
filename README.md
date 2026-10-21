@@ -32,7 +32,7 @@ Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscu
 |---|---|
 | ![El nombre Isabella Nottaro Sánchez formado por caracteres ASCII sobre azul de Prusia](.github/capturas/nombre-oscuro.jpg) | ![Página del proyecto Moodboard SrtaJeans con imágenes tramadas a dos tintas](.github/capturas/proyecto-oscuro.jpg) |
 
-![Lista de proyectos con la vista previa de EntregaIDE siguiendo al cursor](.github/capturas/proyectos-claro.jpg)
+![Lista de proyectos con la vista previa de un proyecto siguiendo al cursor](.github/capturas/proyectos-claro.jpg)
 
 ### Qué tiene
 

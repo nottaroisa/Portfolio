@@ -80,8 +80,8 @@ export const proyectos: Proyecto[] = [
     },
   },
   {
-    id: "entrega-ide",
-    nombre: "EntregaIDE",
+    id: "food-delivery-java",
+    nombre: "FoodDeliveryJava",
     tipo: "Modelo de una app de pedidos y reparto",
     plataforma: "consola",
     problema:
@@ -89,7 +89,7 @@ export const proyectos: Proyecto[] = [
     rol: "Creadora del trabajo: lo hice yo para clase, en la asignatura de Entornos de Desarrollo.",
     stack: ["Java", "Eclipse", "Git"],
     resultado: "Entrega con el historial de commits limpio, que refleja el proceso de trabajo real.",
-    repo: "https://github.com/nottaroisa/EntregaIDE",
+    repo: "https://github.com/nottaroisa/FoodDeliveryJava",
     vista: {
       tipo: "arbol",
       raiz: "EntregaIDE_IFNS/src",
@@ -119,7 +119,7 @@ export const proyectos: Proyecto[] = [
     rol: "Diseño y maquetación completos.",
     stack: ["HTML5", "CSS Grid", "Flexbox", "Variables CSS", "Nesting"],
     resultado: "Responsive en móvil, tablet y escritorio con media queries; rejilla de 4 columnas en escritorio.",
-    repo: "https://github.com/nottaroisa/PGridNottaroIsabella",
+    repo: "https://github.com/nottaroisa/Moodboard",
     vista: {
       tipo: "imagenes",
       imagenes: [

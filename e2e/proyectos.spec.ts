@@ -8,7 +8,7 @@ test("los proyectos son mis repositorios fijados en GitHub, en su orden", async 
   const proyectos = page.getByRole("region", { name: "Proyectos" }).getByRole("link");
 
   // entonces son los tres repositorios fijados en mi perfil de GitHub.
-  await expect(proyectos).toHaveText([/Portfolio/, /EntregaIDE/, /Moodboard SrtaJeans/]);
+  await expect(proyectos).toHaveText([/Portfolio/, /FoodDeliveryJava/, /Moodboard SrtaJeans/]);
 });
 
 test("con ratón, la vista previa sigue al cursor y no se repite bajo cada nombre", async ({ page }) => {
@@ -66,7 +66,7 @@ test("la vista previa aparece justo encima del proyecto, sin taparlo, con ratón
 
 test("el árbol del repositorio está bien dibujado: ├─ para cada hermano y └─ para el último", async ({ page }) => {
   // Dada la página de un proyecto con su árbol de ficheros,
-  await page.goto("/proyectos/entrega-ide");
+  await page.goto("/proyectos/food-delivery-java");
 
   // entonces las ramas siguen las reglas de un árbol de consola.
   expect(await page.locator("pre").first().textContent()).toBe(
@@ -96,15 +96,17 @@ test("cada proyecto cuenta mi rol real, y el moodboard solo enlaza a su reposito
   await expect(rol(page)).toContainText("Claude");
   await expect(rol(page)).not.toContainText("PENDIENTE");
 
-  // EntregaIDE, un trabajo de clase que hice yo.
-  await page.goto("/proyectos/entrega-ide");
+  // FoodDeliveryJava, un trabajo de clase que hice yo, enlazado a su repositorio.
+  await page.goto("/proyectos/food-delivery-java");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("FoodDeliveryJava");
+  await expect(page.getByRole("link", { name: "Ver el código en GitHub" })).toHaveAttribute("href", "https://github.com/nottaroisa/FoodDeliveryJava");
   await expect(rol(page)).toContainText("Creadora del trabajo");
   await expect(rol(page)).not.toContainText("PENDIENTE");
 
   // El moodboard: solo el enlace al repositorio, sin demo ni GitHub Pages.
   await page.goto("/proyectos/pgrid-moodboard");
   const main = page.getByRole("main");
-  await expect(main.getByRole("link", { name: "Ver el código en GitHub" })).toHaveAttribute("href", "https://github.com/nottaroisa/PGridNottaroIsabella");
+  await expect(main.getByRole("link", { name: "Ver el código en GitHub" })).toHaveAttribute("href", "https://github.com/nottaroisa/Moodboard");
   await expect(main).not.toContainText("GitHub Pages");
   await expect(main.getByRole("link", { name: /demo/i })).toHaveCount(0);
 });
