@@ -1,5 +1,4 @@
 import type { Proyecto } from "@/lib/data";
-import { TramaImagen } from "./TramaImagen";
 
 type Nodo = { ruta: string; nivel: number };
 
@@ -30,17 +29,17 @@ function dibujarArbol(raiz: string, nodos: Nodo[]) {
 }
 
 // Vista previa de un proyecto hecha con su material real: la estructura de
-// ficheros del repositorio o sus propias imágenes.
+// ficheros del repositorio o una captura de la web desplegada.
 export function PreviaProyecto({ proyecto, grande = false }: { proyecto: Proyecto; grande?: boolean }) {
   const v = proyecto.vista;
 
-  if (v.tipo === "imagenes") {
+  if (v.tipo === "captura") {
+    // Captura de la web desplegada, tal cual se ve.
     return (
-      <div className={`grid gap-2 ${grande ? "grid-cols-[1.4fr_1fr]" : "grid-cols-1"}`}>
-        {(grande ? v.imagenes : v.imagenes.slice(0, 1)).map((img) => (
-          <TramaImagen key={img.src} src={img.src} alt={img.alt} className="aspect-[4/3]" />
-        ))}
-      </div>
+      <figure className="min-w-0 border-2 border-cobalto bg-papel-hondo">
+        {/* eslint-disable-next-line @next/next/no-img-element -- web estática sin optimizador de imágenes */}
+        <img src={v.src} alt={v.alt} width={1440} height={1080} loading={grande ? "eager" : "lazy"} decoding="async" className="block h-auto w-full" />
+      </figure>
     );
   }
 

@@ -128,28 +128,29 @@ export function VideoTikTok({ video }: { video: Video }) {
             >
               {texturaPlay(video.id, paso)}
             </pre>
-            {/* Miniatura de la portada, como una ventana flotante en la esquina: sin tapar
-                el botón de play. Se sirve desde la web (las de TikTok caducan). */}
-            {/* eslint-disable-next-line @next/next/no-img-element -- web estática sin optimizador de imágenes */}
-            <img
-              src={`/contenido/${video.id}.jpg`}
-              alt=""
-              width={540}
-              height={960}
-              loading="lazy"
-              decoding="async"
-              className="absolute left-[6%] top-[3.5%] w-[26%] border-2 border-cobalto object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
-            />
           </button>
         )}
       </div>
-      <figcaption className="mt-3">
-        <span className="block font-serif text-[clamp(1.3rem,2vw,1.7rem)] leading-tight">{video.titulo}</span>
-        <span className="flex flex-wrap items-baseline justify-between gap-x-3 text-[13px] text-tinta-suave">
-          {video.vistas} reproducciones
-          <a href={urlDeVideo(video)} target="_blank" rel="noopener noreferrer" className="inline-block py-1 text-cobalto hover:underline">
-            Ver en TikTok<span aria-hidden="true"> ↗</span>
-          </a>
+      <figcaption className="mt-3 flex items-start gap-3">
+        {/* Miniatura de la portada junto a la descripción. Se sirve desde la web (las de TikTok caducan). */}
+        {/* eslint-disable-next-line @next/next/no-img-element -- web estática sin optimizador de imágenes */}
+        <img
+          src={`/contenido/${video.id}.jpg`}
+          alt=""
+          width={540}
+          height={960}
+          loading="lazy"
+          decoding="async"
+          className="aspect-[9/16] w-12 shrink-0 border-2 border-cobalto object-cover"
+        />
+        <span className="min-w-0 flex-1">
+          <span className="block font-serif text-[clamp(1.3rem,2vw,1.7rem)] leading-tight">{video.titulo}</span>
+          <span className="flex flex-wrap items-baseline justify-between gap-x-3 text-[13px] text-tinta-suave">
+            {video.vistas} reproducciones
+            <a href={urlDeVideo(video)} target="_blank" rel="noopener noreferrer" className="inline-block py-1 text-cobalto hover:underline">
+              Ver en TikTok<span aria-hidden="true"> ↗</span>
+            </a>
+          </span>
         </span>
       </figcaption>
     </figure>

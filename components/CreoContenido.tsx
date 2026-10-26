@@ -17,7 +17,7 @@ function Cifra({ valor }: { valor: string }) {
 export function CreoContenido() {
   return (
     <section aria-labelledby="contenido">
-      <Cabecera id="contenido" titulo="Creo contenido" nota={`TikTok ${contenido.usuario} desde ${contenido.desde}.`} />
+      <Cabecera id="contenido" titulo="Creo contenido" modelo="headphones" nota={`TikTok ${contenido.usuario} desde ${contenido.desde}.`} />
 
       <div className="grid gap-x-16 gap-y-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
         <p className="font-serif text-[clamp(1.6rem,3vw,2.6rem)] leading-[1.15]">

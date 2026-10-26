@@ -40,10 +40,10 @@ export function Hero() {
             <mask id="nombre-apaisado" maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="5000" height="5000">
               <rect x="-2000" y="-2000" width="5000" height="5000" fill="white" />
               <m.g style={{ scale: reducido ? 1 : escala, originX: "500px", originY: "280px" }}>
-                <text x="40" y="260" fill="black" stroke="black" strokeWidth="9" strokeLinejoin="round" fontSize="250" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-6">
-                  Isabella
+                <text x="40" y="250" fill="black" stroke="black" strokeWidth="7" strokeLinejoin="round" fontSize="168" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-4">
+                  Isabella Federica
                 </text>
-                <text x="40" y="470" fill="black" stroke="black" strokeWidth="7" strokeLinejoin="round" fontSize="168" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-4">
+                <text x="40" y="440" fill="black" stroke="black" strokeWidth="7" strokeLinejoin="round" fontSize="168" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-4">
                   Nottaro Sánchez
                 </text>
               </m.g>
@@ -66,13 +66,16 @@ export function Hero() {
               <g>
                 {/* Letras grandes y un trazo fino que engorda los palos sin cerrar los huecos
                     de la a, la b o la e: con caracteres de 9 px, el nombre se sigue leyendo. */}
-                <text x="8" y="290" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
+                <text x="8" y="225" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
                   Isabella
                 </text>
-                <text x="8" y="420" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
+                <text x="8" y="355" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
+                  Federica
+                </text>
+                <text x="8" y="485" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
                   Nottaro
                 </text>
-                <text x="8" y="550" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
+                <text x="8" y="615" fill="black" stroke="black" strokeWidth="6" strokeLinejoin="round" fontSize="140" style={{ fontFamily: "var(--font-instrument)" }} letterSpacing="-2">
                   Sánchez
                 </text>
               </g>

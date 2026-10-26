@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Descifrar } from "./Descifrar";
+import { IconoCopiar, useVezAlPasar } from "./IconosAnimados";
 
 type Estado = "listo" | "copiado" | "error";
 
@@ -17,6 +18,7 @@ export function CopiarCorreo({ correo }: { correo: string }) {
   const [estado, setEstado] = useState<Estado>("listo");
   const volver = useRef(0);
   const [usuario, dominio] = correo.split("@");
+  const { vez, alPasar } = useVezAlPasar();
 
   async function copiar() {
     try {
@@ -43,12 +45,14 @@ export function CopiarCorreo({ correo }: { correo: string }) {
       <button
         type="button"
         onClick={copiar}
+        {...alPasar}
         aria-label={`Copiar el correo ${correo}`}
         className="mt-1 block cursor-copy text-left font-serif text-[clamp(1.9rem,4.4vw,4rem)] leading-tight text-cobalto decoration-2 underline-offset-[0.18em] transition-transform duration-150 ease-out hover:underline active:scale-[0.99]"
       >
         {/* Si no cabe en una línea, se parte por la arroba y no a mitad de palabra. */}
         {usuario}@<wbr />
         {dominio}
+        <IconoCopiar vez={vez} copiado={estado === "copiado"} className="ml-[0.25em] h-[0.55em] w-[0.55em] align-[0.1em]" />
       </button>
     </div>
   );

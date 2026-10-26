@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Cifras } from "@/components/Cifras";
 import { Cortinilla } from "@/components/Cortinilla";
+import { EnlaceConIcono } from "@/components/EnlaceConIcono";
 import { Pie } from "@/components/Pie";
 import { PreviaProyecto } from "@/components/PreviaProyecto";
 import { Texto } from "@/components/Texto";
@@ -38,9 +39,9 @@ export default async function PaginaProyecto(props: PageProps<"/proyectos/[id]">
       <Cortinilla />
       <main className="mx-auto max-w-7xl px-4 pb-24 pt-6 sm:px-6 md:px-10">
         <nav aria-label="Navegación del proyecto" className="flex flex-wrap justify-between gap-4 pr-14 text-[13px] sm:pr-16 md:pr-44">
-          <Link href="/#proyectos" className="hover:text-cobalto">
-            ← Volver a los proyectos
-          </Link>
+          <EnlaceConIcono icono="volver" href="/#proyectos" className="hover:text-cobalto">
+            Volver a los proyectos
+          </EnlaceConIcono>
           <span className="text-tinta-suave">{perfil.nombre}</span>
         </nav>
 
@@ -73,9 +74,9 @@ export default async function PaginaProyecto(props: PageProps<"/proyectos/[id]">
             </dl>
             <div className="mt-8 flex flex-wrap items-center gap-4 text-[14px]">
               {p.repo && (
-                <a href={p.repo} target="_blank" rel="noopener noreferrer" className="bg-cobalto px-4 py-2 font-bold text-papel hover:bg-cobalto-hondo">
+                <EnlaceConIcono icono="github" href={p.repo} target="_blank" rel="noopener noreferrer" className="bg-cobalto px-4 py-2 font-bold text-papel hover:bg-cobalto-hondo">
                   Ver el código en GitHub
-                </a>
+                </EnlaceConIcono>
               )}
               {p.demo && (
                 <a href={p.demo} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">

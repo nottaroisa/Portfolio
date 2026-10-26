@@ -21,9 +21,9 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Isabella Nottaro Sánchez · Desarrollo de aplicaciones",
+  title: "Isabella Federica Nottaro Sánchez · Desarrollo de aplicaciones",
   description:
-    "Portfolio de Isabella Nottaro Sánchez, estudiante de 2º de DAM: proyectos, experiencia, estudios y contacto.",
+    "Portfolio de Isabella Federica Nottaro Sánchez, estudiante de 2º de DAM: proyectos, experiencia, estudios y contacto.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -2,8 +2,8 @@
 // y se muestra resaltado en la página hasta entonces.
 
 export const perfil = {
-  nombre: "Isabella Nottaro Sánchez",
-  // Isabella Federica Nottaro Sánchez: el monograma que dibuja el campo ASCII de la portada.
+  nombre: "Isabella Federica Nottaro Sánchez",
+  // Las iniciales de mi nombre: el monograma que dibuja el campo ASCII de la portada.
   iniciales: "IFNS",
   lema: "No entiendo la tecnología sin la creatividad.",
   estudia: "2º DAM en CPR Liceo La Paz",
@@ -46,7 +46,7 @@ export type Proyecto = {
 
 export type VistaPrevia =
   | { tipo: "arbol"; raiz: string; nodos: { ruta: string; nivel: number }[] }
-  | { tipo: "imagenes"; imagenes: { src: string; alt: string }[] };
+  | { tipo: "captura"; src: string; alt: string };
 
 // Los repositorios fijados en mi perfil de GitHub, en el mismo orden.
 export const proyectos: Proyecto[] = [
@@ -73,7 +73,7 @@ export const proyectos: Proyecto[] = [
         { ruta: "ascii/CampoAscii.tsx", nivel: 1 },
         { ruta: "Hero.tsx", nivel: 1 },
         { ruta: "ListaProyectos.tsx", nivel: 1 },
-        { ruta: "TramaImagen.tsx", nivel: 1 },
+        { ruta: "CreoContenido.tsx", nivel: 1 },
         { ruta: "e2e", nivel: 0 },
         { ruta: "modo-oscuro.spec.ts", nivel: 1 },
       ],
@@ -121,11 +121,9 @@ export const proyectos: Proyecto[] = [
     resultado: "Responsive en móvil, tablet y escritorio con media queries; rejilla de 4 columnas en escritorio.",
     repo: "https://github.com/nottaroisa/Moodboard",
     vista: {
-      tipo: "imagenes",
-      imagenes: [
-        { src: "/proyectos/pgrid/imagen-pc.jpg", alt: "Ordenador del setup de grabación, una de las imágenes del moodboard" },
-        { src: "/proyectos/pgrid/camara-imagen.jpeg", alt: "Cámara de fotos, una de las imágenes del moodboard" },
-      ],
+      tipo: "captura",
+      src: "/proyectos/pgrid/moodboard.jpg",
+      alt: "El moodboard desplegado: tarjetas con mi presentación, una cámara, mis intereses, mi equipo de grabación y un mini PC",
     },
   },
 ];

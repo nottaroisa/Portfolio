@@ -2,28 +2,37 @@ import { certificaciones, estudios, experiencia, perfil, proyectos, type Entrada
 import { Cabecera } from "./Cabecera";
 import { Comunidades } from "./Comunidades";
 import { Contacto } from "./Contacto";
+import { EnlaceConIcono } from "./EnlaceConIcono";
 import { CreoContenido } from "./CreoContenido";
 import { ListaProyectos } from "./ListaProyectos";
 import { Texto } from "./Texto";
 
 // Un certificado o una credencial que se abre en una pestaña nueva desde su miniatura.
 // Todas las miniaturas van en el mismo marco (4:3) y se ven enteras dentro de él.
-function Miniatura({ href, imagen, texto }: { href: string; imagen: string; texto: string }) {
+function Miniatura({ href, imagen, texto, icono }: { href: string; imagen: string; texto: string; icono: "certificado" | "credencial" }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="group mt-3 flex w-fit items-end gap-3 text-[13px] text-cobalto">
-      {/* eslint-disable-next-line @next/next/no-img-element -- web estática sin optimizador de imágenes */}
-      <img
-        src={`/certificados/${imagen}.jpg`}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        className="aspect-[4/3] w-32 shrink-0 border-2 border-cobalto bg-white object-contain transition-transform duration-200 ease-out group-hover:-rotate-1 group-hover:scale-[1.04]"
-      />
+    <EnlaceConIcono
+      icono={icono}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group mt-3 flex! w-fit items-end! text-[13px] text-cobalto"
+      antes={
+        // eslint-disable-next-line @next/next/no-img-element -- web estática sin optimizador de imágenes
+        <img
+          src={`/certificados/${imagen}.jpg`}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="mr-1 aspect-[4/3] w-32 shrink-0 border-2 border-cobalto bg-white object-contain transition-transform duration-200 ease-out group-hover:-rotate-1 group-hover:scale-[1.04]"
+        />
+      }
+    >
       <span className="underline underline-offset-4">
         {texto}
         <span aria-hidden="true"> ↗</span>
       </span>
-    </a>
+    </EnlaceConIcono>
   );
 }
 
@@ -48,15 +57,17 @@ function Listado({ entradas }: { entradas: Entrada[] }) {
               </p>
             )}
             {e.certificado && (
-              <Miniatura href={`/certificados/${e.certificado}.pdf`} imagen={e.certificado} texto="Ver certificado (PDF)" />
+              <Miniatura href={`/certificados/${e.certificado}.pdf`} imagen={e.certificado} texto="Ver certificado (PDF)" icono="certificado" />
             )}
             {e.enlace &&
               (e.miniatura ? (
-                <Miniatura href={e.enlace} imagen={e.miniatura} texto="Ver credencial" />
+                <Miniatura href={e.enlace} imagen={e.miniatura} texto="Ver credencial" icono="credencial" />
               ) : (
-                <a href={e.enlace} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block py-1 text-[13px] text-cobalto underline underline-offset-4">
-                  Ver credencial<span aria-hidden="true"> ↗</span>
-                </a>
+                <EnlaceConIcono icono="credencial" href={e.enlace} target="_blank" rel="noopener noreferrer" className="mt-1 py-1 text-[13px] text-cobalto">
+                  <span className="underline underline-offset-4">
+                    Ver credencial<span aria-hidden="true"> ↗</span>
+                  </span>
+                </EnlaceConIcono>
               ))}
           </div>
         </li>
@@ -76,7 +87,7 @@ export function Secciones() {
   return (
     <div className="mx-auto max-w-7xl space-y-32 px-4 pb-24 pt-8 sm:px-6 md:px-10">
       <section aria-labelledby="proyectos">
-        <Cabecera id="proyectos" titulo="Proyectos" nota={`Los ${proyectos.length} fijados en mi GitHub.`} />
+        <Cabecera id="proyectos" titulo="Proyectos" modelo="laptop" nota={`Los ${proyectos.length} fijados en mi GitHub.`} />
         <ListaProyectos />
       </section>
 
@@ -101,12 +112,12 @@ export function Secciones() {
       </section>
 
       <section aria-labelledby="experiencia">
-        <Cabecera id="experiencia" titulo="Experiencia" nota="Del CV, de lo más reciente a lo más antiguo." />
+        <Cabecera id="experiencia" titulo="Experiencia" modelo="monitor keyboard" nota="Del CV, de lo más reciente a lo más antiguo." />
         <Listado entradas={experiencia} />
       </section>
 
       <section aria-labelledby="estudios">
-        <Cabecera id="estudios" titulo="Estudios" nota="Actuales y anteriores." />
+        <Cabecera id="estudios" titulo="Estudios" modelo="books-stack" nota="Actuales y anteriores." />
         <Listado entradas={estudios} />
       </section>
 

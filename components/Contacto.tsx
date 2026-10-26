@@ -3,6 +3,7 @@ import { enlaces, perfil } from "@/lib/data";
 import { Cabecera } from "./Cabecera";
 import { CopiarCorreo } from "./CopiarCorreo";
 import { Descifrar } from "./Descifrar";
+import { EnlaceConIcono } from "./EnlaceConIcono";
 
 const redes: [string, string][] = [
   ["LinkedIn", enlaces.linkedin],
@@ -22,19 +23,21 @@ export function Contacto() {
           <CopiarCorreo correo={enlaces.correo} />
           {/* La acción principal: un correo con el asunto y el saludo ya puestos. */}
           <div className="mt-8 flex flex-wrap items-center gap-3 text-[14px]">
-            <a
+            <EnlaceConIcono
+              icono="correo"
               href={correoPreparado}
-              className="inline-block bg-cobalto px-4 py-2.5 font-bold text-papel transition-transform duration-150 ease-out hover:bg-cobalto-hondo active:scale-[0.97]"
+              className="bg-cobalto px-4 py-2.5 font-bold text-papel transition-transform duration-150 ease-out hover:bg-cobalto-hondo active:scale-[0.97]"
             >
               <Descifrar texto="Escríbeme un correo" />
-            </a>
-            <a
+            </EnlaceConIcono>
+            <EnlaceConIcono
+              icono="descargar"
               href={enlaces.cv}
               download
-              className="inline-block border-2 border-cobalto px-4 py-2 font-bold text-cobalto transition-transform duration-150 ease-out hover:bg-cobalto hover:text-papel active:scale-[0.97]"
+              className="border-2 border-cobalto px-4 py-2 font-bold text-cobalto transition-transform duration-150 ease-out hover:bg-cobalto hover:text-papel active:scale-[0.97]"
             >
               <Descifrar texto="Descargar CV (PDF)" />
-            </a>
+            </EnlaceConIcono>
           </div>
           <p className="mt-3 text-[13px] text-tinta-suave">
             ¿Usas Gmail?{" "}

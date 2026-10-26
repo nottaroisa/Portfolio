@@ -55,13 +55,14 @@ test("cada marca enlaza a su web y a los vídeos en los que sale", async ({ page
   await expect(marca("PcComponentes")).toContainText("Historia de Instagram");
 });
 
-test("cada vídeo enseña una miniatura de su portada antes de reproducirlo", async ({ page }) => {
+test("cada vídeo enseña una miniatura de su portada junto a su descripción", async ({ page }) => {
   await page.goto("/");
-  const videos = page.getByRole("region", { name: "Creo contenido" }).getByRole("button", { name: /^Reproducir/ });
+  const seccion = page.getByRole("region", { name: "Creo contenido" });
 
-  // Cada portada lleva su propia miniatura, servida desde la web (no desde TikTok).
+  // La miniatura va al lado del texto que describe el vídeo, no encima del botón de reproducir.
+  await expect(seccion.getByRole("button", { name: /^Reproducir/ }).locator("img")).toHaveCount(0);
   for (const id of ["7021965904724495621", "7610354376309345558", "7611105353064779010", "7142590131092999430"]) {
-    await expect(videos.locator(`img[src="/contenido/${id}.jpg"]`)).toHaveCount(1);
+    await expect(seccion.locator(`figcaption img[src="/contenido/${id}.jpg"]`)).toBeVisible();
   }
 });
 

@@ -27,7 +27,7 @@ test("al pasar de un proyecto a otro con el ratón, solo se ve la vista previa d
   await page.goto("/");
   const seccion = page.getByRole("region", { name: "Proyectos" });
   const enlaces = seccion.getByRole("link");
-  const arbol = (raiz: RegExp) => seccion.locator("pre").filter({ hasText: raiz }).filter({ visible: true });
+  const arbol = (raiz: RegExp) => seccion.locator("figure:not([aria-hidden]) pre").filter({ hasText: raiz }).filter({ visible: true });
   await enlaces.nth(0).hover();
   await expect(arbol(/^Portfolio\//)).toHaveCount(1);
 
@@ -36,15 +36,15 @@ test("al pasar de un proyecto a otro con el ratón, solo se ve la vista previa d
   await page.waitForTimeout(100);
 
   // entonces hay una sola vista previa a la vista, y es la del segundo.
-  expect(await seccion.locator("pre").filter({ visible: true }).count()).toBe(1);
+  expect(await seccion.locator("figure:not([aria-hidden]) pre").filter({ visible: true }).count()).toBe(1);
   await expect(arbol(/^EntregaIDE_IFNS\/src\//)).toHaveCount(1);
 });
 
-test("la vista previa aparece justo encima del proyecto, sin taparlo, con ratón o con teclado", async ({ page }) => {
+test("con ratón la vista previa va pegada al cursor; con teclado, encima del proyecto", async ({ page }) => {
   await page.goto("/");
   const seccion = page.getByRole("region", { name: "Proyectos" });
   const enlaces = seccion.getByRole("link");
-  const previa = seccion.locator("figure").filter({ visible: true });
+  const previa = seccion.locator("figure:not([aria-hidden])").filter({ visible: true });
   const pegadaEncima = async (fila: number) => {
     await page.waitForTimeout(500); // la previa llega con un muelle
     const caja = (await previa.boundingBox())!;
@@ -53,15 +53,36 @@ test("la vista previa aparece justo encima del proyecto, sin taparlo, con ratón
     expect(caja.y + caja.height).toBeGreaterThan(proyecto.y - 40);
   };
 
-  // Con el ratón sobre el segundo proyecto, la previa queda encima de su fila.
-  await enlaces.nth(1).hover();
-  await pegadaEncima(1);
+  // Con el ratón en mitad del segundo proyecto, la esquina de la previa queda junto al cursor.
+  await enlaces.nth(1).scrollIntoViewIfNeeded();
+  const fila = (await enlaces.nth(1).boundingBox())!;
+  const cursor = { x: fila.x + 300, y: fila.y + fila.height / 2 };
+  await page.mouse.move(cursor.x, cursor.y, { steps: 5 });
+  await page.waitForTimeout(500);
+  const caja = (await previa.boundingBox())!;
+  expect(Math.abs(caja.x - cursor.x)).toBeLessThan(40);
+  expect(Math.abs(caja.y + caja.height - cursor.y)).toBeLessThan(40);
 
   // Con el teclado, al enfocar el segundo proyecto, también.
   await page.mouse.move(0, 0);
   await expect(previa).toHaveCount(0);
   await enlaces.nth(1).focus();
   await pegadaEncima(1);
+});
+
+test("el moodboard se previsualiza con una captura de la web desplegada, sin ASCII", async ({ page }) => {
+  // En la lista, al pasar el ratón,
+  await page.goto("/");
+  const seccion = page.getByRole("region", { name: "Proyectos" });
+  await seccion.getByRole("link", { name: /Moodboard/ }).hover();
+  const previa = seccion.locator("figure:not([aria-hidden])").filter({ visible: true });
+  await expect(previa.locator('img[src="/proyectos/pgrid/moodboard.jpg"]')).toBeVisible();
+  await expect(previa.locator("canvas")).toHaveCount(0);
+
+  // y en su página.
+  await page.goto("/proyectos/pgrid-moodboard");
+  await expect(page.getByRole("main").locator('img[src="/proyectos/pgrid/moodboard.jpg"]')).toBeVisible();
+  await expect(page.getByRole("main").locator("canvas")).toHaveCount(0);
 });
 
 test("el árbol del repositorio está bien dibujado: ├─ para cada hermano y └─ para el último", async ({ page }) => {

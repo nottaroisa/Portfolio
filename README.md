@@ -1,6 +1,6 @@
 <div align="center">
 
-# Isabella Nottaro Sánchez
+# Isabella Federica Nottaro Sánchez
 
 **Portfolio web** · estudiante de 2º de Desarrollo de Aplicaciones Multiplataforma
 
@@ -30,7 +30,7 @@ Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscu
 
 | Mi nombre escrito con el campo ASCII (modo oscuro) | Página de un proyecto (modo oscuro) |
 |---|---|
-| ![El nombre Isabella Nottaro Sánchez formado por caracteres ASCII sobre azul de Prusia](.github/capturas/nombre-oscuro.jpg) | ![Página del proyecto Moodboard SrtaJeans con imágenes tramadas a dos tintas](.github/capturas/proyecto-oscuro.jpg) |
+| ![El nombre Isabella Federica Nottaro Sánchez formado por caracteres ASCII sobre azul de Prusia](.github/capturas/nombre-oscuro.jpg) | ![Página del proyecto Moodboard SrtaJeans con la captura del moodboard](.github/capturas/proyecto-oscuro.jpg) |
 
 ![Lista de proyectos con la vista previa de un proyecto siguiendo al cursor](.github/capturas/proyectos-claro.jpg)
 
@@ -38,15 +38,16 @@ Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscu
 
 - **Campo ASCII propio** en canvas 2D: convierte una imagen en caracteres según su densidad, solo redibuja las celdas que cambian y se detiene cuando no hay movimiento.
 - **Máscara del nombre** ligada al scroll, con framer-motion.
-- **Proyectos con vista previa** que sigue al cursor, hecha con material real de cada uno: la estructura de ficheros del repositorio o sus fotos tramadas a dos tintas. Son los repositorios fijados en mi perfil de GitHub.
+- **Objetos 3D dibujados con caracteres** junto al título de Proyectos (un portátil), Experiencia (monitor y teclado), Estudios (una pila de libros) y Creo contenido (unos auriculares). three.js pinta cada modelo en una imagen diminuta y su luz elige el carácter de cada celda, así se imprimen con la misma tinta que el resto. Giran despacio, más deprisa con el ratón encima, y three.js, los modelos y su descompresor solo se descargan al llegar a la sección. En el móvil no se muestran.
+- **Proyectos con vista previa** que sigue al cursor, hecha con material real de cada uno: la estructura de ficheros del repositorio o una captura de la web desplegada. Son los repositorios fijados en mi perfil de GitHub.
 - **Una página por proyecto** (`/proyectos/<id>`), generada al compilar, con el problema, mi rol, el resultado y el enlace al código.
-- **Creo contenido**: resumen de mi cuenta de TikTok con cifras que se "calculan" al verse, y cuatro vídeos con un botón de play dibujado en ASCII y una miniatura de su portada. El reproductor de TikTok solo se carga al pulsarlos (sin scripts ni cookies de TikTok hasta entonces).
+- **Creo contenido**: resumen de mi cuenta de TikTok con cifras que se "calculan" al verse, y cuatro vídeos con un botón de play dibujado en ASCII y una miniatura de su portada junto a su descripción. El reproductor de TikTok solo se carga al pulsarlos (sin scripts ni cookies de TikTok hasta entonces).
 - **Créditos**: las marcas con las que he trabajado, como los créditos del final de un vídeo, cada una con sus vídeos y su web.
-- **Estudios y certificaciones**, con enlace a la credencial cuando la tiene.
+- **Estudios y certificaciones**, con enlace a la credencial cuando la tiene. Los enlaces a certificados, credenciales, GitHub y «Volver» llevan su icono animado.
 - **Comunidades** como credenciales de evento que cuelgan de su cinta: WordPress Coruña (con mi blog) y GPUL.
-- **Contacto** con estado de disponibilidad, el correo que se copia al pulsarlo y un botón «Escríbeme un correo» que lo abre con asunto y saludo ya puestos (también desde Gmail).
+- **Contacto** con estado de disponibilidad, el correo que se copia al pulsarlo y un botón «Escríbeme un correo» que lo abre con asunto y saludo ya puestos (también desde Gmail). Los botones llevan iconos animados: el sobre se abre, la flecha baja al CV y, al copiar el correo, se dibuja la marca de copiado.
 - **Modo claro y oscuro** con un botón fijo arriba a la derecha. Entra en modo oscuro y recuerda la elección; la barra del navegador del móvil acompaña al tema.
-- **Responsive**: en el móvil el campo responde al tocar y el nombre se recompone en tres líneas; sin ratón (móvil o tablet), las vistas previas de los proyectos van debajo de cada uno.
+- **Responsive**: en el móvil el campo responde al tocar y el nombre se recompone en cuatro líneas; sin ratón (móvil o tablet), las vistas previas de los proyectos van debajo de cada uno.
 
 <p align="center">
   <img src=".github/capturas/movil-claro.jpg" alt="Portada en el móvil, modo claro" width="260">
@@ -68,7 +69,7 @@ Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscu
 | Framework | [Next.js 16](https://nextjs.org) (App Router) con exportación estática |
 | Estilos | [Tailwind CSS 4](https://tailwindcss.com) |
 | Animación | [framer-motion](https://motion.dev), cargado en modo ligero (`LazyMotion`) |
-| Gráficos | Canvas 2D propio (campo ASCII y tramado ordenado de Bayer) |
+| Gráficos | Canvas 2D propio (campo ASCII) y [three.js](https://threejs.org) para los objetos 3D en ASCII |
 | Tipografía | [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) y [Space Mono](https://fonts.google.com/specimen/Space+Mono) |
 | Lenguaje | TypeScript |
 
@@ -81,9 +82,11 @@ app/
   globals.css               tintas del modo claro y oscuro
 components/
   ascii/CampoAscii.tsx      motor del campo ASCII
+  ascii/Modelo3DAscii.tsx   objeto 3D en ASCII que carga three.js al llegar a la vista
+  ascii/motor3d.ts          three.js: pinta el modelo y lo convierte en caracteres
+  IconosAnimados.tsx        iconos animados de los botones
   Hero.tsx                  portada con la máscara del nombre
   ListaProyectos.tsx        lista con vista previa flotante
-  TramaImagen.tsx           imágenes impresas a dos tintas
   CreoContenido.tsx         TikTok: resumen y vídeos
   VideoTikTok.tsx           vídeo con play en ASCII que carga TikTok solo al pulsarlo
   Creditos.tsx              marcas con sus vídeos y su web
@@ -98,6 +101,8 @@ lib/
 public/
   cv-isabella-nottaro.pdf   CV descargable
   contenido/                portadas de los vídeos de TikTok
+  modelos/                  modelos 3D (GLB con Draco) de threejsassets
+  draco/                    descompresor de Draco para los modelos
 e2e/                        tests de aceptación con Playwright, uno por funcionalidad
 ```
 
@@ -133,7 +138,7 @@ Contra la web en local (arranca `npm run dev` si no está en marcha):
 npm test
 ```
 
-Son 24 tests, uno por cada cosa que la web promete: el modo oscuro, el contacto, los proyectos, el contenido, las comunidades, los estudios, el móvil y la tablet. La primera vez que se lanzan contra `npm run dev`, Next.js compila las páginas mientras llegan las peticiones y algún test puede pasarse de tiempo; al repetirlos, pasan.
+Son 41 tests, uno por cada cosa que la web promete: el modo oscuro, el contacto, los proyectos, el contenido, las comunidades, los estudios, los iconos, los objetos 3D, el móvil y la tablet. La primera vez que se lanzan contra `npm run dev`, Next.js compila las páginas mientras llegan las peticiones y algún test puede pasarse de tiempo; al repetirlos, pasan.
 
 Contra otra dirección, por ejemplo la publicada (en PowerShell: `$env:BASE_URL="https://isabellanottaro.vercel.app"; npm test`):
 
@@ -150,12 +155,14 @@ Para desplegarla en otro sitio: en Vercel se importa el repositorio y detecta Ne
 ## Créditos
 
 - Las ideas de la máscara de texto, la vista previa que sigue al cursor y el texto que se descifra parten de componentes de [ui-layouts](https://github.com/ui-layouts/ui-layouts) (licencia MIT), adaptados y reescritos para este proyecto.
+- Los iconos animados (contacto, páginas de proyecto y certificados) son de [animateicons](https://github.com/Avijit07x/animateicons) (licencia MIT, formas de [Lucide](https://lucide.dev)), adaptados al `LazyMotion` de la web.
+- Los modelos 3D son de la colección gratuita de [threejsassets](https://threejsassets.com/assets/free) (uso libre, sin atribución obligatoria); el descompresor de Draco viene con three.js (licencia Apache 2.0).
 - Fuentes de [Google Fonts](https://fonts.google.com) bajo licencia SIL Open Font License.
 
 ---
 
 <div align="center">
 
-Octubre de 2026 · hecho por Isabella Nottaro Sánchez
+Octubre de 2026 · hecho por Isabella Federica Nottaro Sánchez
 
 </div>

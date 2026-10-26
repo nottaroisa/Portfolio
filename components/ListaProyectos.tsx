@@ -23,19 +23,28 @@ export function ListaProyectos() {
   // La primera vez la previa salta a su sitio; después llega con el muelle.
   const colocar = (valor: typeof x, destino: number) => (activo ? valor.set(destino) : valor.jump(destino));
 
-  // La previa queda justo encima de la fila del proyecto, para no taparlo.
-  // Con ratón, en horizontal sigue al cursor; con teclado, se ancla al título.
-  const anclar = (fila: HTMLElement, cursorX?: number) => {
+  // Con ratón, la previa sigue al cursor: su esquina inferior izquierda queda
+  // pegada a la punta, arriba a la derecha, para no tapar lo que hay debajo.
+  const SEPARACION = 16;
+  const alCursor = (valorX: (v: typeof x, n: number) => void, clientX: number, clientY: number) => {
+    if (!caja.current) return;
+    const r = caja.current.getBoundingClientRect();
+    valorX(x, clientX - r.left + SEPARACION);
+    valorX(y, clientY - r.top - SEPARACION);
+  };
+
+  // Con teclado no hay cursor: la previa se ancla encima de la fila, alineada con el título.
+  const anclarAFila = (fila: HTMLElement) => {
     if (!caja.current) return;
     const r = caja.current.getBoundingClientRect();
     const f = fila.getBoundingClientRect();
     colocar(y, f.top - r.top - 12);
-    colocar(x, cursorX === undefined ? f.left - r.left : cursorX - r.left + 24);
+    colocar(x, f.left - r.left);
   };
 
   const mover = (e: PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType !== "mouse" || !caja.current) return;
-    x.set(e.clientX - caja.current.getBoundingClientRect().left + 24);
+    if (e.pointerType !== "mouse") return;
+    alCursor((v, n) => v.set(n), e.clientX, e.clientY);
   };
 
   const proyectoActivo = proyectos.find((p) => p.id === activo);
@@ -49,11 +58,11 @@ export function ListaProyectos() {
               href={`/proyectos/${p.id}`}
               onPointerEnter={(e) => {
                 if (e.pointerType !== "mouse") return;
-                anclar(e.currentTarget, e.clientX);
+                alCursor(colocar, e.clientX, e.clientY);
                 setActivo(p.id);
               }}
               onFocus={(e) => {
-                anclar(e.currentTarget);
+                anclarAFila(e.currentTarget);
                 setActivo(p.id);
               }}
               onBlur={() => setActivo(null)}
