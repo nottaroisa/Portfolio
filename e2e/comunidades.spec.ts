@@ -24,3 +24,14 @@ test("mi blog se enlaza desde WordPress, no desde la sección de TikTok", async 
   await expect(comunidades.getByRole("link", { name: /Leer mi blog/ })).toHaveAttribute("href", "https://blogisabellanottaro.blog");
   await expect(page.getByRole("region", { name: "Creo contenido" }).getByRole("link", { name: /blog/i })).toHaveCount(0);
 });
+
+test("las credenciales de las comunidades van centradas en la página", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  const seccion = page.getByRole("region", { name: "Comunidades" });
+  const caja = (await seccion.boundingBox())!;
+  const lista = (await seccion.locator("ul").first().boundingBox())!;
+  const izquierda = lista.x - caja.x;
+  const derecha = caja.x + caja.width - (lista.x + lista.width);
+  expect(Math.abs(izquierda - derecha)).toBeLessThan(4);
+});

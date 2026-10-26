@@ -16,7 +16,7 @@ export function Comunidades() {
   return (
     <section aria-labelledby="comunidades">
       <Cabecera id="comunidades" titulo="Comunidades" nota="Donde aprendo fuera del aula." />
-      <ul className="grid gap-x-12 gap-y-16 pt-12 sm:grid-cols-2 lg:max-w-5xl">
+      <ul className="grid gap-x-12 gap-y-16 pt-12 mx-auto max-w-5xl sm:grid-cols-2">
         {comunidades.map((c, i) => (
           <li key={c.nombre} className="min-w-0">
             <div

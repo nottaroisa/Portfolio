@@ -38,7 +38,7 @@ Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscu
 
 - **Campo ASCII propio** en canvas 2D: convierte una imagen en caracteres según su densidad, solo redibuja las celdas que cambian y se detiene cuando no hay movimiento.
 - **Máscara del nombre** ligada al scroll, con framer-motion.
-- **Objetos 3D dibujados con caracteres** junto al título de Proyectos (un portátil), Experiencia (monitor y teclado), Estudios (una pila de libros) y Creo contenido (unos auriculares). three.js pinta cada modelo en una imagen diminuta y su luz elige el carácter de cada celda, así se imprimen con la misma tinta que el resto. Giran despacio, más deprisa con el ratón encima, y three.js, los modelos y su descompresor solo se descargan al llegar a la sección. En el móvil no se muestran.
+- **Objetos 3D teñidos de azul** junto al título de Proyectos (un portátil), Experiencia (monitor y teclado), Estudios (una pila de libros) y Creo contenido (unos auriculares). three.js los sombrea con la tinta del tema, como una capa de fusión «Color»: sombras en un azul hondo y luces en el azul de la web, también al cambiar de tema. Giran despacio, más deprisa con el ratón encima, y three.js, los modelos y su descompresor solo se descargan al llegar a la sección. En el móvil no se muestran.
 - **Proyectos con vista previa** que sigue al cursor, hecha con material real de cada uno: la estructura de ficheros del repositorio o una captura de la web desplegada. Son los repositorios fijados en mi perfil de GitHub.
 - **Una página por proyecto** (`/proyectos/<id>`), generada al compilar, con el problema, mi rol, el resultado y el enlace al código.
 - **Creo contenido**: resumen de mi cuenta de TikTok con cifras que se "calculan" al verse, y cuatro vídeos con un botón de play dibujado en ASCII y una miniatura de su portada junto a su descripción. El reproductor de TikTok solo se carga al pulsarlos (sin scripts ni cookies de TikTok hasta entonces).
@@ -69,7 +69,7 @@ Todo está impreso a **dos tintas**, cobalto y negro sobre papel. En **modo oscu
 | Framework | [Next.js 16](https://nextjs.org) (App Router) con exportación estática |
 | Estilos | [Tailwind CSS 4](https://tailwindcss.com) |
 | Animación | [framer-motion](https://motion.dev), cargado en modo ligero (`LazyMotion`) |
-| Gráficos | Canvas 2D propio (campo ASCII) y [three.js](https://threejs.org) para los objetos 3D en ASCII |
+| Gráficos | Canvas 2D propio (campo ASCII) y [three.js](https://threejs.org) para los objetos 3D |
 | Tipografía | [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) y [Space Mono](https://fonts.google.com/specimen/Space+Mono) |
 | Lenguaje | TypeScript |
 
@@ -82,8 +82,8 @@ app/
   globals.css               tintas del modo claro y oscuro
 components/
   ascii/CampoAscii.tsx      motor del campo ASCII
-  ascii/Modelo3DAscii.tsx   objeto 3D en ASCII que carga three.js al llegar a la vista
-  ascii/motor3d.ts          three.js: pinta el modelo y lo convierte en caracteres
+  ascii/Modelo3D.tsx        objeto 3D que carga three.js al llegar a la vista
+  ascii/motor3d.ts          three.js: pinta el modelo teñido con la tinta azul
   IconosAnimados.tsx        iconos animados de los botones
   Hero.tsx                  portada con la máscara del nombre
   ListaProyectos.tsx        lista con vista previa flotante
@@ -138,7 +138,7 @@ Contra la web en local (arranca `npm run dev` si no está en marcha):
 npm test
 ```
 
-Son 41 tests, uno por cada cosa que la web promete: el modo oscuro, el contacto, los proyectos, el contenido, las comunidades, los estudios, los iconos, los objetos 3D, el móvil y la tablet. La primera vez que se lanzan contra `npm run dev`, Next.js compila las páginas mientras llegan las peticiones y algún test puede pasarse de tiempo; al repetirlos, pasan.
+Son 42 tests, uno por cada cosa que la web promete: el modo oscuro, el contacto, los proyectos, el contenido, las comunidades, los estudios, los iconos, los objetos 3D, el móvil y la tablet. La primera vez que se lanzan contra `npm run dev`, Next.js compila las páginas mientras llegan las peticiones y algún test puede pasarse de tiempo; al repetirlos, pasan.
 
 Contra otra dirección, por ejemplo la publicada (en PowerShell: `$env:BASE_URL="https://isabellanottaro.vercel.app"; npm test`):
 
