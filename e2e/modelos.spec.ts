@@ -6,7 +6,8 @@ import { expect, test, type Page } from "@playwright/test";
 const secciones: [string, string][] = [
   ["Proyectos", "laptop"],
   ["Experiencia", "monitor keyboard"],
-  ["Estudios", "books-stack"],
+  ["Estudios", "birrete"],
+  ["Certificaciones", "faceout-book"],
   ["Creo contenido", "headphones"],
 ];
 
@@ -64,9 +65,9 @@ test.describe("con movimiento reducido", () => {
   test("el modelo se pinta pero no gira", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("heading", { level: 2, name: "Estudios", exact: true }).scrollIntoViewIfNeeded();
-    await expect.poll(async () => (await pintado(page, "books-stack")).pixeles, { timeout: 15_000 }).toBeGreaterThan(500);
-    const antes = (await pintado(page, "books-stack")).firma;
+    await expect.poll(async () => (await pintado(page, "birrete")).pixeles, { timeout: 15_000 }).toBeGreaterThan(500);
+    const antes = (await pintado(page, "birrete")).firma;
     await page.waitForTimeout(1500);
-    expect((await pintado(page, "books-stack")).firma).toBe(antes);
+    expect((await pintado(page, "birrete")).firma).toBe(antes);
   });
 });

@@ -117,12 +117,12 @@ export function Secciones() {
       </section>
 
       <section aria-labelledby="estudios">
-        <Cabecera id="estudios" titulo="Estudios" modelo="books-stack" nota="Actuales y anteriores." />
+        <Cabecera id="estudios" titulo="Estudios" modelo="birrete" nota="Actuales y anteriores." />
         <Listado entradas={estudios} />
       </section>
 
       <section aria-labelledby="certificaciones">
-        <Cabecera id="certificaciones" titulo="Certificaciones" nota="Licencias y certificados, con su credencial cuando la tiene." />
+        <Cabecera id="certificaciones" titulo="Certificaciones" modelo="faceout-book" nota="Licencias y certificados, con su credencial cuando la tiene." />
         <Listado entradas={certificaciones} />
       </section>
 
