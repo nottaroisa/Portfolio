@@ -55,7 +55,7 @@ export default function Creditos() {
         <header className="mt-16 border-b-2 border-tinta pb-6">
           <h1 className="font-serif text-[clamp(3rem,10vw,9rem)] leading-[0.88]">Créditos y licencias</h1>
           <p className="mt-4 max-w-[62ch] text-[15px] leading-relaxed">
-            La web la he hecho yo, con ayuda de Claude para programarla. Aquí está lo que viene de fuera: de dónde sale, quién lo hizo, con qué licencia
+            La web la ha sido pensada, diseñada y creada por mí, con ayuda de algunas IAs para ampliar conocimiento y apoyarme en cuestiones que no tuviera tiempo de alcanzar. Aquí está lo que viene de fuera: de dónde sale, quién lo hizo, con qué licencia
             se usa y qué he cambiado.
           </p>
         </header>
