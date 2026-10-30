@@ -160,7 +160,6 @@ Para desplegarla en otro sitio: en Vercel se importa el repositorio y detecta Ne
 La lista completa, con lo que es mío y lo que es de terceros, está en la página [Créditos y licencias](https://isabellanottaro.vercel.app/creditos).
 
 
-- Las ideas de la máscara de texto, la vista previa que sigue al cursor y el texto que se descifra parten de componentes de [ui-layouts](https://github.com/ui-layouts/ui-layouts) (licencia MIT), adaptados y reescritos para este proyecto.
 - Los iconos animados (contacto, páginas de proyecto y certificados) son de [animateicons](https://github.com/Avijit07x/animateicons) (licencia MIT, formas de [Lucide](https://lucide.dev)), adaptados al `LazyMotion` de la web.
 - El birrete es [«Graduation Hat»](https://sketchfab.com/3d-models/graduation-hat-b0a7e821403b4c8cb8e1d32ea4075eac) de [DevFaisal](https://sketchfab.com/DevFaisal), con licencia [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); lo he simplificado y comprimido.
 - El resto de modelos 3D son de la colección gratuita de [threejsassets](https://threejsassets.com/assets/free) ([Free Commercial License](https://threejsassets.com/license), sin atribución obligatoria); el descompresor de Draco viene con three.js (licencia Apache 2.0).
@@ -170,6 +169,6 @@ La lista completa, con lo que es mío y lo que es de terceros, está en la pági
 
 <div align="center">
 
-Octubre de 2026 · hecho por Isabella Federica Nottaro Sánchez
+Octubre de 2026 · Isabella Federica Nottaro Sánchez
 
 </div>
